@@ -23,7 +23,7 @@
 				<?php endif; ?>
 
 				<?php if ( isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-					<p class="elementskit-commentor-coment"><em><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></em></p>
+					<p class="elementskit-commentor-coment"><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></p>
 				<?php endif;  ?>
 
 				<?php if ( isset($testimonial['review_youtube_link']) && !empty($testimonial['review_youtube_link'])) : ?>

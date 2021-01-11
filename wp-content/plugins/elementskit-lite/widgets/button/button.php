@@ -28,6 +28,10 @@ class ElementsKit_Widget_Button extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
 

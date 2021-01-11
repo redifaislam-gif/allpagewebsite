@@ -429,7 +429,8 @@ class Notice{
                 }
 
                 .wpmet-notice .main-message{
-                    margin-bottom: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 10px;
                 }
 
                 .wpmet-notice-buttons {

@@ -86,7 +86,10 @@ if ( ! class_exists( 'Premium_Addons_Wpml' ) ) {
 		 * Widgets to translate.
 		 *
 		 * @since 3.1.9
+         * @access public
+         * 
 		 * @param array $widgets Widget array.
+         * 
 		 * @return array
 		 */
 		public function translatable_widgets( $widgets ) {
@@ -574,7 +577,8 @@ if ( ! class_exists( 'Premium_Addons_Wpml' ) ) {
 		 *
 		 * @since 0.0.1
 		 * @access public
-		 * return object
+         * 
+		 * @return object
 		 */
 		public static function get_instance() {
 

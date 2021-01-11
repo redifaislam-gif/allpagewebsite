@@ -29,6 +29,10 @@ class ElementsKit_Widget_Fluent_Forms extends Widget_Base {
     public function get_categories() {
         return Handler::get_categories();
     }
+
+    public function get_help_url() {
+        return '';
+    }
     
     public static function getForms()
     {

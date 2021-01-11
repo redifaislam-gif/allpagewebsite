@@ -1,11 +1,11 @@
 ﻿=== Premium Addons for Elementor ===
 Contributors: Leap13, Rimoun
-Tags: elementor, elements, addons, elementor addon, elementor widget, elementor extensions, elementor templates, page builder, builder, visual editor, wordpress page builder
+Tags: elementor, elementor addons, elementor widgets, elementor elements, elementor templates
 Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme
 Requires at least: 5.0
 Tested Up To: 5.6
 Requires PHP: 5.4
-Stable Tag: 4.1.2
+Stable Tag: 4.1.6
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -184,6 +184,29 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 4.1.6 =
+
+- Tweak: Added Grow hover effect to Button and Image Button widgets.
+- Tweak: Added Size option for Navigation Dots in Carousel widget.
+- Tweak: URL Flag option in Media Grid widget to link filter categories from any page.
+
+= 4.1.5 =
+
+- Fixed: RTL issues in Progress Bar widget.
+- Fixed: HTML markup issue in Bullet List widget.
+- Fixed: Navigation Arrows color option not applied on SVG icons.
+
+= 4.1.4 =
+
+- Fixed: WPML errors with Premium Carousel widget.
+
+= 4.1.3 =
+
+- Tweak: Added Custom Icons options for Navigation Arrows/Dots in Carousel widget.
+- Tweak: Added Caching option to Youtube Playlist/Channel Videos in Videobox widget.
+- Tweak: Added Empty Query notice message control in Blog widget.
+- Fixed: Background Color option not working with vertical direction in Carousel widget.
 
 = 4.1.2 =
 

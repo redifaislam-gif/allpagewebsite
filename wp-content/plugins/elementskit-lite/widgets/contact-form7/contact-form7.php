@@ -27,6 +27,10 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     function ekit_cf7form() {
         $wpcf7_form_list = get_posts( array(
             'post_type'	 => 'wpcf7_contact_form',

@@ -1445,6 +1445,18 @@ ul.slick-dots li {
   height: 20px;
   cursor: pointer; }
 
+/*
+* Custom Navigation Dot
+*/
+.premium-carousel-wrapper .premium-carousel-nav-dot,
+.premium-carousel-wrapper .premium-carousel-nav-arrow-prev,
+.premium-carousel-wrapper .premium-carousel-nav-arrow-next {
+  display: none; }
+
+.premium-carousel-wrapper ul.slick-dots svg {
+  width: 20px;
+  height: 20px; }
+
 /* Ripple Out */
 @-webkit-keyframes hvr-ripple-out {
   0% {
@@ -4065,11 +4077,13 @@ ul.premium-person-social-list {
   line-height: 0; }
   .premium-pricing-icon-container .premium-pricing-icon {
     display: inline-block; }
-  .premium-pricing-icon-container .premium-pricing-image img {
-    width: 25px;
-    height: 25px;
-    -o-object-fit: cover;
-       object-fit: cover; }
+  .premium-pricing-icon-container .premium-pricing-image {
+    overflow: hidden; }
+    .premium-pricing-icon-container .premium-pricing-image img {
+      width: 25px;
+      height: 25px;
+      -o-object-fit: cover;
+         object-fit: cover; }
 
 .premium-badge-left {
   position: absolute;
@@ -4704,6 +4718,54 @@ ul.premium-person-social-list {
       -ms-transform: translateX(-100%);
           transform: translateX(-100%);
   opacity: 0; }
+
+.premium-button-style6:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 100%;
+          border-radius: 100%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+      -ms-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+
+.premium-button-style6:hover:before {
+  -webkit-transform: translate(-50%, -50%) scale(3);
+      -ms-transform: translate(-50%, -50%) scale(3);
+          transform: translate(-50%, -50%) scale(3); }
+
+.premium-button-style6 .premium-button-text-icon-wrapper {
+  position: relative;
+  z-index: 1; }
+
+.premium-mouse-detect-yes .premium-button-style6 .premium-button-style6-bg {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  display: block;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out; }
+
+.premium-mouse-detect-yes .premium-button-style6:hover .premium-button-style6-bg {
+  width: 225%;
+  height: 560px; }
+
+.premium-mouse-detect-yes .premium-button-style6:before {
+  width: 0;
+  height: 0; }
 
 /**************** Premium Contact Form7 **********/
 /*************************************************/

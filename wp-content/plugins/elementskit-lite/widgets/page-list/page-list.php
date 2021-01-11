@@ -31,6 +31,10 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_icon',

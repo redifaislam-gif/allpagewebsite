@@ -1,6 +1,6 @@
 <?php
 /**
- * Premium Banner.
+ * Premium Blog.
  */
 
 namespace PremiumAddons\Widgets;
@@ -106,24 +106,24 @@ class Premium_Blog extends Widget_Base {
 	}
 
 	/**
-	 * Retrieve Widget Categories.
-	 *
-	 * @since 1.5.1
-	 * @access public
-	 *
-	 * @return array Widget categories.
-	 */
-	public function get_keywords() {
-		return array( 'posts', 'grid', 'item', 'loop', 'query', 'portfolio', 'cpt', 'custom' );
-	}
-
-	/**
 	 * Retrieve Widget Keywords.
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return array( 'posts', 'grid', 'item', 'loop', 'query', 'portfolio', 'cpt', 'custom' );
+	}
+
+	/**
+	 * Retrieve Widget Categories.
+	 *
+	 * @since 1.5.1
+	 * @access public
+	 *
+	 * @return array Widget categories.
 	 */
 	public function get_categories() {
 		return array( 'premium-elements' );
@@ -341,11 +341,13 @@ class Premium_Blog extends Widget_Base {
 						$this->add_control(
 							$index . '_' . $key . '_filter_rule',
 							array(
+								/* translators: %s Taxnomy Label */
 								'label'       => sprintf( __( '%s Filter Rule', 'premium-addons-for-elementor' ), $tax->label ),
 								'type'        => Controls_Manager::SELECT,
 								'default'     => 'IN',
 								'label_block' => true,
 								'options'     => array(
+									/* translators: %s Taxnomy Label */
 									'IN'     => sprintf( __( 'Match %s', 'premium-addons-for-elementor' ), $tax->label ),
 									'NOT IN' => sprintf( __( 'Exclude %s', 'premium-addons-for-elementor' ), $tax->label ),
 								),
@@ -359,6 +361,7 @@ class Premium_Blog extends Widget_Base {
 						$this->add_control(
 							'tax_' . $index . '_' . $key . '_filter',
 							array(
+								/* translators: %s Taxnomy Label */
 								'label'       => sprintf( __( '%s Filter', 'premium-addons-for-elementor' ), $tax->label ),
 								'type'        => Controls_Manager::SELECT2,
 								'default'     => '',
@@ -495,6 +498,15 @@ class Premium_Blog extends Widget_Base {
 					'ASC'  => __( 'Ascending', 'premium-addons-for-elementor' ),
 				),
 				'default'     => 'DESC',
+			)
+		);
+
+		$this->add_control(
+			'empty_query_text',
+			array(
+				'label'       => __( 'Empty Query Text', 'premium-addons-for-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
 			)
 		);
 
@@ -1027,7 +1039,6 @@ class Premium_Blog extends Widget_Base {
 			array(
 				'label'     => __( 'Carousel', 'premium-addons-for-elementor' ),
 				'condition' => array(
-					// 'premium_blog_grid' => 'yes',
 					'premium_blog_paging!' => 'yes',
 				),
 			)
@@ -2673,7 +2684,9 @@ class Premium_Blog extends Widget_Base {
 
 		if ( ! $query->have_posts() ) {
 
-			$this->get_empty_query_message();
+			$query_notice = $settings['empty_query_text'];
+
+			$this->get_empty_query_message( $query_notice );
 			return;
 		}
 
@@ -2847,11 +2860,18 @@ class Premium_Blog extends Widget_Base {
 	 *
 	 * @since 3.20.3
 	 * @access protected
+	 *
+	 * @param string $notice empty query notice.
 	 */
-	protected function get_empty_query_message() {
+	protected function get_empty_query_message( $notice ) {
+
+		if ( empty( $notice ) ) {
+			$notice = __( 'The current query has no posts. Please make sure you have published items matching your query.', 'premium-addons-for-elementor' );
+		}
+
 		?>
 		<div class="premium-error-notice">
-			<?php echo wp_kses_post( __( 'The current query has no posts. Please make sure you have published items matching your query.', 'premium-addons-for-elementor' ) ); ?>
+			<?php echo wp_kses_post( $notice ); ?>
 		</div>
 		<?php
 	}

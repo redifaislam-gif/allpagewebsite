@@ -7,7 +7,7 @@ if(!class_exists('\Wpmet\Libs\Banner')):
 
 class Banner {
 
-    protected $script_version = '1.1.0';
+    protected $script_version = '2.0.0';
 
     protected $key = 'wpmet_banner';
     protected $data;
@@ -43,16 +43,16 @@ class Banner {
 
 		if(empty($this->data)) {
 			return;
-		}
-
+        }
+        
         foreach($this->data as $banner) {
-
-			if($banner->type != 'banner') {
+            
+            if($banner->type != 'banner') {
                 continue;
             }
-
+            
 			if(!empty($this->filter_array) && $this->in_blacklist($banner, $this->filter_array)) {
-				continue;
+                continue;
 			}
 
             if($banner->start <= time() && time() <= $banner->end) {
@@ -182,7 +182,7 @@ class Banner {
                     'httpversion' => '1.1',
                 ]
             );
-
+            // print_r($response['body']); exit;
             if(!is_wp_error($response) && isset($response['body']) && $response['body'] != ''){
 
                 $response = json_decode($response['body']);
@@ -216,11 +216,8 @@ class Banner {
 	private static $instance;
 
 	public static function instance($text_domain = '') {
-        
-        if(!self::$instance) {
-            self::$instance = new static();            
-		}
 
+        self::$instance = new static();            
         return self::$instance->set_text_domain($text_domain);
     }
 }

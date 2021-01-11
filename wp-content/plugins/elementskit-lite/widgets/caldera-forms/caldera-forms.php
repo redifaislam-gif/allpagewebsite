@@ -26,6 +26,11 @@ class ElementsKit_Widget_Caldera_Forms extends Widget_Base {
     public function get_categories() {
         return Handler::get_categories();
     }
+
+    public function get_help_url() {
+        return '';
+	}
+	
 	function elementskit_caldera_forms_options() {
 		if ( class_exists( 'Caldera_Forms' ) ) {
 			$caldera_forms = \Caldera_Forms_Forms::get_forms( true, true );

@@ -211,7 +211,9 @@
                     $lastSection.hide();
 
                 var $section = $('#pa-section-' + slug);
-                $section.css({ display: 'block' });
+                $section.css({
+                    display: 'block'
+                });
 
                 $lastSection = $section;
 

@@ -1,6 +1,8 @@
 <?php
 namespace ElementsKit_Lite;
 
+
+
 defined( 'ABSPATH' ) || exit;
 
 
@@ -75,6 +77,26 @@ class Plugin{
         ->set_plugin('ElementsKit', 'https://wpmet.com/plugin/elementskit/')
         ->set_api_url('https://api.wpmet.com/public/stories/')
         ->call();
+
+        /**
+         * ----------------------------------------
+         *  Ask for rating ⭐⭐⭐⭐⭐
+         *  A rating notice will appear depends on 
+         *  @set_first_appear_day methods 
+         * ----------------------------------------
+         */
+        
+        \Wpmet\Libs\Rating::instance('elementskit-lite')
+        ->set_plugin('ElementsKit', 'https://wordpress.org/plugins/elementskit-lite/')
+        ->set_plugin_logo('https://ps.w.org/elementskit-lite/assets/icon-128x128.png','width:150px !important')
+        ->set_allowed_screens('edit-elementskit_template')
+        ->set_allowed_screens('toplevel_page_elementskit')
+        ->set_allowed_screens('elementskit_page_elementskit-lite_get_help')
+        ->set_priority(10)
+        ->set_first_appear_day(7)
+        ->set_condition(true)
+        ->call();
+
 
 
         /**

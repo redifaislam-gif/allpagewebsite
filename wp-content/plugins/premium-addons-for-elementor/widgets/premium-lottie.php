@@ -377,6 +377,7 @@ class Premium_Lottie extends Widget_Base {
             'https://www.youtube.com/watch?v=0QWzUpF57dw' => 'Check the video tutorial »',
             'https://premiumaddons.com/docs/lottie-animations-widget-tutorial' => 'Check the documentation article »',
             'https://premiumaddons.com/docs/how-to-speed-up-elementor-pages-with-many-lottie-animations' => 'How to speed up Elementor pages with many Lottie animations »',
+            'https://premiumaddons.com/docs/customize-elementor-lottie-widget/' => 'How to Customize Lottie Animations »'
         ];
 
         $doc_index = 1;

@@ -115,14 +115,12 @@
     width: calc(100% + 50px) !important;
     max-width: -webkit-calc(100% + 50px) !important;
     max-width: calc(100% + 50px) !important;
-    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s,
-        -webkit-transform 0.35s;
+    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, filter 0.35s, transform 0.35s,
-        -webkit-filter 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transform: translate3d(40px, 0, 0);
     transform: translate3d(40px, 0, 0);
 }
@@ -537,27 +535,23 @@
 }
 
 .premium-banner-animation5 img {
-    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s,
-        -webkit-transform 0.35s;
+    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, filter 0.35s, transform 0.35s,
-        -webkit-filter 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
 }
 
 .premium-banner-animation2 img,
 .premium-banner-animation4 img,
 .premium-banner-animation6 img {
-    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s,
-        -webkit-transform 0.35s;
+    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, filter 0.35s, transform 0.35s,
-        -webkit-filter 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
 }
 
 .premium-banner-animation5.zoomout img,
@@ -736,14 +730,12 @@
     width: calc(100% + 20px) !important;
     max-width: -webkit-calc(100% + 20px) !important;
     max-width: calc(100% + 20px) !important;
-    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s,
-        -webkit-transform 0.35s;
+    -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transition: opacity 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s;
     transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, filter 0.35s, transform 0.35s,
-        -webkit-filter 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, filter 0.35s, transform 0.35s, -webkit-filter 0.35s, -webkit-transform 0.35s;
     -webkit-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0);
     -webkit-backface-visibility: hidden;
@@ -1659,6 +1651,20 @@ ul.slick-dots li {
     cursor: pointer;
 }
 
+/*
+* Custom Navigation Dot
+*/
+.premium-carousel-wrapper .premium-carousel-nav-dot,
+.premium-carousel-wrapper .premium-carousel-nav-arrow-prev,
+.premium-carousel-wrapper .premium-carousel-nav-arrow-next {
+    display: none;
+}
+
+.premium-carousel-wrapper ul.slick-dots svg {
+    width: 20px;
+    height: 20px;
+}
+
 /* Ripple Out */
 @-webkit-keyframes hvr-ripple-out {
     0% {
@@ -2160,9 +2166,11 @@ button.premium-modal-box-modal-close {
     position: relative;
 }
 
-.premium-progressbar-progress {
+.premium-progressbar-bar-wrap {
+    position: relative;
+    text-align: right;
     overflow: hidden;
-    height: 20px;
+    height: 25px;
     margin-bottom: 50px;
     background-color: #f5f5f5;
     -webkit-border-radius: 4px;
@@ -2171,7 +2179,55 @@ button.premium-modal-box-modal-close {
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.premium-progressbar-progress-bar {
+.premium-progressbar-bar-wrap.premium-progressbar-dots {
+    background-color: transparent;
+    width: 100%;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.premium-progressbar-bar-wrap .progress-segment {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.premium-progressbar-bar-wrap .progress-segment.filled {
+    background: #6ec1e4;
+}
+
+.premium-progressbar-bar-wrap .progress-segment:not(:first-child):not(:last-child) {
+    margin: 0 4px;
+}
+
+.premium-progressbar-bar-wrap .progress-segment:first-child {
+    margin-left: 4px;
+}
+
+.premium-progressbar-bar-wrap .progress-segment:last-child {
+    margin-right: 4px;
+}
+
+.premium-progressbar-bar-wrap .progress-segment .segment-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: #6ec1e4;
+}
+
+.premium-progressbar-bar {
     float: right;
     width: 0%;
     height: 100%;
@@ -2183,9 +2239,8 @@ button.premium-modal-box-modal-close {
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
-.progress-striped .progress-bar,
-.progress-bar-striped {
-    background-image: -webkit-linear-gradient(45deg,
+.premium-progressbar-striped .premium-progressbar-bar {
+    background-image: -webkit-linear-gradient(-135deg,
             rgba(255, 255, 255, 0.15) 25%,
             transparent 25%,
             transparent 50%,
@@ -2193,7 +2248,7 @@ button.premium-modal-box-modal-close {
             rgba(255, 255, 255, 0.15) 75%,
             transparent 75%,
             transparent);
-    background-image: -webkit-linear-gradient(-135deg,
+    background-image: -webkit-linear-gradient(45deg,
             rgba(255, 255, 255, 0.15) 25%,
             transparent 25%,
             transparent 50%,
@@ -2213,18 +2268,19 @@ button.premium-modal-box-modal-close {
     background-size: 40px 40px;
 }
 
-.pa-progress.active .progress-bar,
-.progress-bar.active {
+.premium-progressbar-active .premium-progressbar-bar {
     -webkit-animation: progress-bar-stripes 2s linear infinite;
     animation: progress-bar-stripes 2s linear infinite;
 }
 
-.premium-progressbar-progress {
-    position: relative;
-    text-align: right;
+.premium-progressbar-gradient .premium-progressbar-bar {
+    -webkit-background-size: 400% 400% !important;
+    background-size: 400% 400% !important;
+    -webkit-animation: progress-bar-gradient 10s ease-in-out infinite;
+    animation: progress-bar-gradient 10s ease-in-out infinite;
 }
 
-.premium-progressbar-progress-bar {
+.premium-progressbar-bar {
     position: absolute;
     overflow: hidden;
     line-height: 20px;
@@ -2234,19 +2290,16 @@ button.premium-modal-box-modal-close {
     clear: both;
 }
 
-/*Progress Bar Style*/
-.premium-progressbar-progress-bar {
+.premium-progressbar-bar {
     -webkit-transition: width 0s ease-in-out !important;
     transition: width 0s ease-in-out !important;
 }
 
-/*Left Label Style*/
 .premium-progressbar-container p:first-of-type {
     margin: 0;
     float: right;
 }
 
-/*Right Label Style*/
 .premium-progressbar-container p:nth-of-type(2) {
     margin: 0;
     float: left;
@@ -2292,6 +2345,97 @@ button.premium-modal-box-modal-close {
     display: inline-block;
 }
 
+/**
+  * Circle Progress Bar
+  */
+.premium-progressbar-circle-wrap {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-clip-path: inset(0 0 0 50%);
+    clip-path: inset(0 0 0 50%);
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle div {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #54595f;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-clip-path: inset(0 50% 0 0);
+    clip-path: inset(0 50% 0 0);
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle .premium-progressbar-circle-left {
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle .premium-progressbar-circle-right {
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    visibility: hidden;
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle-base {
+    width: 100%;
+    height: 100%;
+    border: 6px solid #eee;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.premium-progressbar-circle-wrap .premium-progressbar-circle-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.premium-progressbar-circle-wrap .premium-lottie-animation {
+    line-height: 1;
+}
+
 @-webkit-keyframes progress-bar-stripes {
     from {
         background-position: 100% 0;
@@ -2309,6 +2453,34 @@ button.premium-modal-box-modal-close {
 
     to {
         background-position: 40px 0;
+    }
+}
+
+@-webkit-keyframes progress-bar-gradient {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes progress-bar-gradient {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
     }
 }
 
@@ -4469,6 +4641,10 @@ ul.premium-person-social-list {
     display: inline-block;
 }
 
+.premium-pricing-icon-container .premium-pricing-image {
+    overflow: hidden;
+}
+
 .premium-pricing-icon-container .premium-pricing-image img {
     width: 25px;
     height: 25px;
@@ -5177,6 +5353,60 @@ ul.premium-person-social-list {
     -ms-transform: translateX(100%);
     transform: translateX(100%);
     opacity: 0;
+}
+
+.premium-button-style6:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    -ms-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.premium-button-style6:hover:before {
+    -webkit-transform: translate(-50%, -50%) scale(3);
+    -ms-transform: translate(-50%, -50%) scale(3);
+    transform: translate(-50%, -50%) scale(3);
+}
+
+.premium-button-style6 .premium-button-text-icon-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.premium-mouse-detect-yes .premium-button-style6 .premium-button-style6-bg {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 0px;
+    height: 0px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+}
+
+.premium-mouse-detect-yes .premium-button-style6:hover .premium-button-style6-bg {
+    width: 225%;
+    height: 560px;
+}
+
+.premium-mouse-detect-yes .premium-button-style6:before {
+    width: 0;
+    height: 0;
 }
 
 /**************** Premium Contact Form7 **********/

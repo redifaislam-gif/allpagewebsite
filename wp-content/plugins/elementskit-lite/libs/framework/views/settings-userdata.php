@@ -1,21 +1,27 @@
 <?php
+
 $user_data = $this->utils->get_option('user_data', []);
+$pro_active = (in_array('elementskit/elementskit.php', apply_filters('active_plugins', get_option('active_plugins'))));
 
 ?>
 
 <div class="ekit-admin-fields-container">
     <div class="ekit-admin-fields-container-fieldset-- xx">
         <div class="panel-group attr-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-
+            <!-------------------
+                Mail Champ
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div class="attr-panel-heading" role="tab" id="mail_chimp_data_headeing">
+                <div class="attr-panel-heading label-mail-chimp" role="tab" id="mail_chimp_data_headeing">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                        href="#mail_chimp_data_control" aria-expanded="true"
                        aria-controls="mail_chimp_data_control">
-				        <?php esc_html_e('Mail Chimp Data', 'elementsKit-lite'); ?>
+				        <span><?php esc_html_e('Mail Chimp Data', 'elementsKit-lite'); ?></span>
                     </a>
                 </div>
-		        <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('mail-chimp')) : ?>
+                
+                    
+
                     <div id="mail_chimp_data_control" class="attr-panel-collapse attr-collapse attr-in" role="tabpanel"
                          aria-labelledby="mail_chimp_data_headeing">
                         <div class="attr-panel-body">
@@ -32,33 +38,33 @@ $user_data = $this->utils->get_option('user_data', []);
 
                         </div>
                     </div>
-		        <?php endif; ?>
+
+
+
+		     
             </div>
 
-
+            <!-------------------
+            Facebook Page Feed
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div
-                        <?php
+                <div                        
+                        class="<?php echo $this->utils->is_widget_active_class('facebook-feed', $pro_active);?>"
+                        data-attr-toggle="modal" 
+                        data-target="#elementskit_go_pro_modal"
+                        role="tab" id="facebook_data_headeing">
 
-                        if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('facebook-feed')) {
-	                        echo 'class="attr-panel-heading"';
 
-                        } else {
-                            echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                        }
-
-                        ?>
-
-                         role="tab" id="facebook_data_headeing">
-                    <a class="attr-btn" role="button" data-attr-toggle="collapse" data-parent="#accordion"
+                        <a class="attr-btn" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                         
                         href="#fbp_feed_control_data"
-                        aria-expanded="true" aria-controls="fbp_feed_control_data">
-				        <?php esc_html_e('Facebook Page Feed', 'elementsKit-lite'); ?>
+                        aria-expanded="false" aria-controls="fbp_feed_control_data">
+				        <span><?php esc_html_e('Facebook Page Feed', 'elementsKit-lite'); ?></span>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('facebook-feed')) : ?>
-                <div id="fbp_feed_control_data" class="attr-panel-collapse attr-collapse attr-in" role="tabpanel"
+               
+                
+                <div id="fbp_feed_control_data" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="facebook_data_headeing">
                     <div class="attr-panel-body">
                         <div class="ekit-admin-user-data-separator"></div>
@@ -95,26 +101,27 @@ $user_data = $this->utils->get_option('user_data', []);
 
                     </div>
                 </div>
-	            <?php endif; ?>
+	           
             </div>
 
+            <!-------------------
+            Facebook page review
+            -------------------->
+
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('facebook-review')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="facebook_data_headeing">
+                <div 
+                    class="<?php echo $this->utils->is_widget_active_class('facebook-review', $pro_active);?>"
+                    data-attr-toggle="modal" 
+                    data-target="#elementskit_go_pro_modal"
+                    role="tab" id="facebook_data_headeing">
+                    
                     <a class="attr-btn" role="button" data-attr-toggle="collapse" data-parent="#accordion" href="#fbp_review_control_data"
                        aria-expanded="false" aria-controls="fbp_review_control_data">
-				        <?php esc_html_e('Facebook page review', 'elementsKit-lite'); ?>
+				        <span><?php esc_html_e('Facebook page review', 'elementsKit-lite'); ?></span>
                     </a>
+
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('facebook-review')) : ?>
+	         
                     <div id="fbp_review_control_data" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="facebook_data_headeing">
                     <div class="attr-panel-body">
@@ -159,27 +166,27 @@ $user_data = $this->utils->get_option('user_data', []);
                         </a>
                     </div>
                 </div>
-	            <?php endif; ?>
+	         
             </div>
 
+             <!-------------------
+                trustpilot
+            -------------------->
+
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('trustpilot')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="trustpilot_data_headeing">
+                <div 
+                class="<?php echo $this->utils->is_widget_active_class('trustpilot', $pro_active);?>"
+                data-target="#elementskit_go_pro_modal"
+                data-attr-toggle="modal"
+                role="tab" id="trustpilot_data_headeing">
+                
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse"
                        data-parent="#accordion"
                        href="#trustpilot_data_control" aria-expanded="false" aria-controls="trustpilot_data_control">
                         <?php esc_html_e('Trustpilot Settings', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('trustpilot')) : ?>
+	      
                 <div id="trustpilot_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="trustpilot_data_headeing">
                     <div class="attr-panel-body">
@@ -196,28 +203,27 @@ $user_data = $this->utils->get_option('user_data', []);
                         ?>
                     </div>
                 </div>
-	            <?php endif; ?>
+	            
             </div>
 
-
+            <!-------------------
+                yelp
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
+                <div 
+                class="<?php echo $this->utils->is_widget_active_class('yelp', $pro_active);?>"
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                role="tab" id="yelp_data_headeing">
 
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('yelp')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="yelp_data_headeing">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse"
                        data-parent="#accordion"
                        href="#yelp_data_control" aria-expanded="false" aria-controls="yelp_data_control">
                         <?php esc_html_e('Yelp Settings', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('yelp')) : ?>
+
+	        
                 <div id="yelp_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="yelp_data_headeing">
                     <div class="attr-panel-body">
@@ -234,27 +240,24 @@ $user_data = $this->utils->get_option('user_data', []);
                         ?>
                     </div>
                 </div>
-	            <?php endif; ?>
+
             </div>
 
-
+            <!-------------------
+            facebook messenger
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Module_List::instance()->is_active('facebook-messenger')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="facebook_data_headeing">
+                <div
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                class="<?php echo $this->utils->is_widget_active_class('facebook-messenger', $pro_active);?>"
+                role="tab" id="facebook_data_headeing">
                     <a class="attr-btn" role="button" data-attr-toggle="collapse" data-parent="#accordion" href="#fbm_control_data"
                        aria-expanded="false" aria-controls="fbm_control_data">
 				        <?php esc_html_e('Facebook Messenger', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Module_List::instance()->is_active('facebook-messenger')) : ?>
+	            
                 <div id="fbm_control_data" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="facebook_data_headeing">
                     <div class="attr-panel-body">
@@ -303,26 +306,25 @@ $user_data = $this->utils->get_option('user_data', []);
                         <div style="font-weight: bold;font-style: italic;color: blue;padding: 3px;"><?php echo site_url() ?></div>
                     </div>
                 </div>
-	            <?php endif; ?>
+	        
             </div>
 
+            <!-------------------
+                dribble-feed
+            -------------------->
+
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('dribble-feed')) {
-	                echo 'class="attr-panel-heading"';
- 
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="dribble_data_headeing">
+                <div 
+                class="<?php echo $this->utils->is_widget_active_class('dribble-feed', $pro_active);?>"
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                role="tab" id="dribble_data_headeing">
                     <a class="attr-btn" role="button" data-attr-toggle="collapse" data-parent="#accordion" href="#dribble_control_data"
                        aria-expanded="false" aria-controls="dribble_control_data">
 				        <?php esc_html_e('Dribbble User Data', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('dribble-feed')) : ?>
+	           
                 <div id="dribble_control_data" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="dribble_data_headeing">
                     <div class="attr-panel-body">
@@ -374,27 +376,24 @@ $user_data = $this->utils->get_option('user_data', []);
 
                     </div>
                 </div>
-	            <?php endif; ?>
+	        
             </div>
 
-
+            <!-------------------
+                twitter feed
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('twitter-feed')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="twetter_data_headeing">
+                <div 
+                class="<?php echo $this->utils->is_widget_active_class('twitter-feed', $pro_active);?>"
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                role="tab" id="twetter_data_headeing">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                         href="#twitter_data_control" aria-expanded="false" aria-controls="twitter_data_control">
                         <?php esc_html_e('Twitter User Data', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('twitter-feed')) : ?>
+	           
                 <div id="twitter_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                     aria-labelledby="twetter_data_headeing">
                     <div class="attr-panel-body">
@@ -422,27 +421,24 @@ $user_data = $this->utils->get_option('user_data', []);
 						<a class="ekit-admin-access-token" href="https://token.wpmet.com/index.php?provider=twitter" target="_blank"> <?php echo esc_html__('Get Access Token', 'elementsKit-lite');?> </a>
                     </div>
                 </div>
-	            <?php endif; ?>
+	            
             </div>
 
-
+            <!-------------------
+                instagram-feed
+            -------------------->
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('instagram-feed')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="instagram_data_headeing">
+                <div 
+                class="<?php echo $this->utils->is_widget_active_class('instagram-feed', $pro_active);?>"
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                role="tab" id="instagram_data_headeing">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                         href="#instagram_data_control" aria-expanded="false" aria-controls="instagram_data_control">
                         <?php esc_html_e('Instragram User Data', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('instagram-feed')) : ?>
+	           
                     <div id="instagram_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                     aria-labelledby="instagram_data_headeing">
                     <div class="attr-panel-body">
@@ -501,26 +497,25 @@ $user_data = $this->utils->get_option('user_data', []);
 
                     </div>
                 </div>
-	            <?php endif; ?>
+	            
             </div>
 
+            <!-------------------
+                zoom
+            -------------------->
+
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-
-                if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('zoom')) {
-	                echo 'class="attr-panel-heading"';
-
-                } else {
-	                echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                }
-
-                ?> role="tab" id="zoom_data_headeing">
+                <div  
+                class="<?php echo $this->utils->is_widget_active_class('zoom', $pro_active);?>"
+                data-attr-toggle="modal" 
+                data-target="#elementskit_go_pro_modal"
+                role="tab" id="zoom_data_headeing">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                        href="#zoom_data_control" aria-expanded="false" aria-controls="zoom_data_control">
 				        <?php esc_html_e('Zoom Data', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-	            <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('zoom')) : ?>
+	            
                     <div id="zoom_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                      aria-labelledby="zoom_data_headeing">
                     <div class="attr-panel-body">
@@ -546,24 +541,26 @@ $user_data = $this->utils->get_option('user_data', []);
                         <a class="ekit-admin-access-token ekit-zoom-connection" href="https://token.wpmet.com/index.php?provider=zoom" target="_blank"> <?php echo esc_html__('Check connection', 'elementsKit-lite');?> </a>
                     </div>
                 </div>
-	            <?php endif; ?>
+	           
             </div>
 
+             <!-------------------
+                google-map
+            -------------------->
+
             <div class="attr-panel ekit_accordion_card">
-                <div <?php
-                    if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('google-map')) {
-                        echo 'class="attr-panel-heading"';
-                    } else {
-                        echo 'class="attr-panel-heading pro-disabled" data-attr-toggle="modal" data-target="#elementskit_go_pro_modal"';
-                    }
-                    ?> role="tab" id="google_map_data_heading">
+                <div
+                    class="<?php echo $this->utils->is_widget_active_class('google-map', $pro_active);?>"
+                    data-attr-toggle="modal" 
+                    data-target="#elementskit_go_pro_modal"
+                    role="tab" id="google_map_data_heading">
                     <a class="attr-btn attr-collapsed" role="button" data-attr-toggle="collapse" data-parent="#accordion"
                        href="#google_map_data_control" aria-expanded="false"
                        aria-controls="google_map_data_control">
 				        <?php esc_html_e('Google Map', 'elementsKit-lite'); ?>
                     </a>
                 </div>
-		        <?php if(\ElementsKit_Lite\Config\Widget_List::instance()->is_active('google-map')) : ?>
+		       
                     <div id="google_map_data_control" class="attr-panel-collapse attr-collapse" role="tabpanel"
                          aria-labelledby="google_map_data_heading" aria-expanded='false'>
                         <div class="attr-panel-body">
@@ -580,7 +577,7 @@ $user_data = $this->utils->get_option('user_data', []);
 
                         </div>
                     </div>
-		        <?php endif; ?>
+		      
             </div>
 
             <?php do_action('elementskit/admin/sections/userdata'); ?>

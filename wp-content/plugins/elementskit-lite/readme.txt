@@ -2,8 +2,8 @@
 Contributors: Ataurr, wpmet, emranio, pobonpaul1994, easin55474, khalidjubair, enamulhoquemohon
 Tags: elementor addons, mega menu, header footer builder, elements, elementor extensions, elementor modules, page builder addons, elementor addon, elementor widget, addons
 Requires at least: 5.0
-Tested up to: 5.5
-Stable tag: 2.1.0
+Tested up to: 5.6
+Stable tag: 2.1.1
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -35,7 +35,7 @@ ElementsKit is an ultimate All in one addons for Elementor Page Builder. It incl
 - 45+ Pre-designed Header & Footer Templates
 - 55+ Free and Premium elements
 - 500+ Ready Sections
-- 230+ Ready Pages
+- 30+ Ready Pages
 - 30+ Widget Presets
 - WooCommerce Widgets
 - One Page Scroll
@@ -345,6 +345,14 @@ Our Hotspot Widget for Elementor page builder offers lots of styles including: H
 - Widgets area
 
 == Changelog ==
+Version: 2.1.1 (10-01-2021) 
+New: Quickly turn on or off the Widgets and Modules from Dashboard.
+New: Position option for Header Off-Canvas Widget.
+Fix: Team Widget minor css fix for Position text.
+Fix: Header Footer builder popup css conflict.
+Fix: Widget Builder controls selectors values backward support.
+Fix: removed em tag from Testimonial Style 3.
+
 Version: 2.1.0 (24-12-2020)
 New: Added new 'Fluent Forms' widgets.
 New: added new background color control on each page list

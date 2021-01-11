@@ -27,6 +27,10 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	public function __get_lists(){
 		$options = [ '' => 'Select List'];
 		$dataApi 	= Handler::get_data();

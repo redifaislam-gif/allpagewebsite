@@ -363,9 +363,9 @@
                             $videoInnerContainer.removeClass("animated " + $videoInnerContainer.data("video-animation"));
                         }
                     }, {
-                        offset: 0 + '%',
-                        triggerOnce: false
-                    }
+                    offset: 0 + '%',
+                    triggerOnce: false
+                }
                 );
             }
 
@@ -479,6 +479,8 @@
             ltrMode = settings.ltr_mode,
             shuffle = settings.shuffle;
 
+        var $filters = $scope.find(".premium-gallery-cats-container li");
+
         if (layout === "metro") {
 
             var gridWidth = $galleryElement.width(),
@@ -558,12 +560,30 @@
             $isotopeGallery.isotope("layout");
         });
 
-        $(window).on("load", function () {
+        $(document).ready(function () {
+
             $isotopeGallery.isotope("layout");
             //Make sure to filter after all images are loaded
             $isotopeGallery.isotope({
                 filter: settings.active_cat
             });
+
+            //Trigger filter tabs from differet pages
+            var url = new URL(window.location.href);
+
+            if (url) {
+                var filterIndex = url.searchParams.get(settings.flag);
+
+                if (filterIndex) {
+
+                    var $targetFilter = $filters.eq(filterIndex).find("a");
+
+                    $targetFilter.trigger('click');
+
+                }
+
+            }
+
         });
 
         if (loadMore) {
@@ -585,8 +605,8 @@
                         "premium-gallery-item-hidden");
                     var itemsToHide = instance.filteredItems.slice(imagesToShow, instance
                         .filteredItems.length).map(function (item) {
-                        return item.element;
-                    });
+                            return item.element;
+                        });
                     $(itemsToHide).addClass("premium-gallery-item-hidden");
                     $isotopeGallery.isotope("layout");
                     if (0 == itemsToHide) {
@@ -608,12 +628,12 @@
                         beforeSend: function () {
                             $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").removeClass(
-                                "premium-gallery-item-hidden");
+                                    "premium-gallery-item-hidden");
                         },
                         success: function () {
                             $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").addClass(
-                                "premium-gallery-item-hidden");
+                                    "premium-gallery-item-hidden");
                         }
                     });
                 });
@@ -661,13 +681,13 @@
 
         }
 
-        $scope.find(".premium-gallery-cats-container li a").click(function (e) {
+        $filters.find("a").click(function (e) {
             e.preventDefault();
 
             isFilterClicked = true;
 
-            //Showing all images of category
-            $scope.find(".premium-gallery-cats-container li .active").removeClass("active");
+            //Show category images
+            $filters.find(".active").removeClass("active");
             $(this).addClass("active");
 
             filter = $(this).attr("data-filter");
@@ -973,19 +993,19 @@
             slidesToScroll: settings.slidesToScroll,
             slidesToShow: settings.slidesToShow,
             responsive: [{
-                    breakpoint: settings.tabletBreak,
-                    settings: {
-                        slidesToShow: settings.slidesTab,
-                        slidesToScroll: settings.slidesTab
-                    }
-                },
-                {
-                    breakpoint: settings.mobileBreak,
-                    settings: {
-                        slidesToShow: settings.slidesMob,
-                        slidesToScroll: settings.slidesMob
-                    }
+                breakpoint: settings.tabletBreak,
+                settings: {
+                    slidesToShow: settings.slidesTab,
+                    slidesToScroll: settings.slidesTab
                 }
+            },
+            {
+                breakpoint: settings.mobileBreak,
+                settings: {
+                    slidesToShow: settings.slidesMob,
+                    slidesToScroll: settings.slidesMob
+                }
+            }
             ],
             useTransform: true,
             fade: settings.fade,
@@ -1001,11 +1021,12 @@
             centerMode: settings.centerMode,
             centerPadding: settings.centerPadding,
             arrows: settings.arrows,
-            nextArrow: settings.nextArrow,
-            prevArrow: settings.prevArrow,
+            prevArrow: $carouselElem.find(".premium-carousel-nav-arrow-prev").html(),
+            nextArrow: $carouselElem.find(".premium-carousel-nav-arrow-next").html(),
             dots: settings.dots,
             customPaging: function () {
-                return ('<i class="' + settings.customPaging + '" ></i > ');
+                var customDot = $carouselElem.find(".premium-carousel-nav-dot").html();
+                return customDot;
             }
         });
 
@@ -1096,8 +1117,8 @@
             if ("null" != settings.animation) {
                 $inViewPort.siblings().find(
                     "p, h1, h2, h3, h4, h5, h6, span, a, img, i, button").removeClass(
-                    settings.animation).addClass(
-                    "premium-carousel-content-hidden");
+                        settings.animation).addClass(
+                            "premium-carousel-content-hidden");
             }
         });
 
@@ -1325,29 +1346,29 @@
                     '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>'
                 ), (nextArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>'
-                );
+                    );
             } else {
                 prevArrow = prevArrow = "";
             }
 
-            $($blogElement).slick({
+            $blogElement.slick({
                 infinite: true,
                 slidesToShow: cols,
                 slidesToScroll: slidesToScroll || cols,
                 responsive: [{
-                        breakpoint: 1025,
-                        settings: {
-                            slidesToShow: colsTablet,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: colsMobile,
-                            slidesToScroll: 1
-                        }
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: colsTablet,
+                        slidesToScroll: 1
                     }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: colsMobile,
+                        slidesToScroll: 1
+                    }
+                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
@@ -1586,32 +1607,32 @@
                 colsTablet = $persons.data("col-tablet"),
                 colsMobile = $persons.data("col-mobile"),
                 prevArrow =
-                '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
+                    '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
                 nextArrow =
-                '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
+                    '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
 
             $persons.slick({
                 infinite: true,
                 slidesToShow: colsNumber,
                 slidesToScroll: colsNumber,
                 responsive: [{
-                        breakpoint: 1025,
-                        settings: {
-                            slidesToShow: colsTablet,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: colsMobile,
-                            slidesToScroll: 1
-                        }
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: colsTablet,
+                        slidesToScroll: 1
                     }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: colsMobile,
+                        slidesToScroll: 1
+                    }
+                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
-                rtl: 'true' == rtl ? true : false,
+                rtl: rtl ? true : false,
                 nextArrow: nextArrow,
                 prevArrow: prevArrow,
                 draggable: true,
@@ -1626,14 +1647,14 @@
         var heights = new Array();
 
         $persons.find(".premium-person-container").each(function (index, person) {
-            $(person).imagesLoaded(function () {}).done(function () {
+            $(person).imagesLoaded(function () { }).done(function () {
                 var imageHeight = $(person).find(".premium-person-image-container")
                     .outerHeight();
                 heights.push(imageHeight);
             });
         });
 
-        $persons.imagesLoaded(function () {}).done(function () {
+        $persons.imagesLoaded(function () { }).done(function () {
             var maxHeight = Math.max.apply(null, heights);
             $persons.find(".premium-person-image-wrap").css("height", maxHeight + "px");
         });
@@ -1695,7 +1716,6 @@
 
     };
 
-
     /****** Premium Bullet List Handler ******/
     var PremiumIconListHandler = function ($scope, $) {
 
@@ -1724,6 +1744,28 @@
             });
     };
 
+    /****** Premium Grow Effect Handler ******/
+    var PremiumButtonHandler = function ($scope, $) {
+
+        var $btnGrow = $scope.find('.premium-button-style6-bg');
+
+        if ($btnGrow.length !== 0 && $scope.hasClass('premium-mouse-detect-yes')) {
+            $scope.on('mouseenter mouseleave', '.premium-button-style6', function (e) {
+
+                var parentOffset = $(this).offset(),
+                    left = e.pageX - parentOffset.left,
+                    top = e.pageY - parentOffset.top;
+
+                $btnGrow.css({
+                    top: top,
+                    left: left,
+                });
+
+            });
+        }
+
+    };
+
     //Elementor JS Hooks
     $(window).on("elementor/frontend/init", function () {
 
@@ -1741,6 +1783,8 @@
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-contact-form.default", PremiumContactFormHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-person.default", PremiumTeamMembersHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-icon-list.default", PremiumIconListHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-button.default", PremiumButtonHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-image-button.default", PremiumButtonHandler);
 
         if (elementorFrontend.isEditMode()) {
             elementorFrontend.hooks.addAction(

@@ -32,6 +32,9 @@ class ElementsKit_Widget_Post_Tab extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
 

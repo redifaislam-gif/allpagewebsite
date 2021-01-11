@@ -82,6 +82,20 @@ $sections = apply_filters('elementskit/admin/sections/list', $sections);
                             <div class="attr-tab-pane <?php echo ($section_key !== key($sections)) ? : 'attr-active'; ?>" id="v-elementskit-<?php echo esc_attr($section_key); ?>" role="tabpanel" aria-labelledby="v-elementskit-tab-<?php echo esc_attr($section_key); ?>">
                                 <div class="ekit-admin-section-header">
                                     <h2 class="ekit-admin-section-heaer-title"><i class="<?php echo esc_attr($section['icon']) ?>"></i><?php echo esc_html($section['title']); ?></h2>
+                                          
+                                    <?php if ( in_array( $section_key, ['elements', 'modules']) ) : ?>
+                                        <div class="attr-input attr-input-switch ekit-content-type-free ekit-all-element-switch">
+                                            <div class="ekit-admin-input-switch attr-card-body">
+                                                <input checked="" type="checkbox" value="image-accordion" class="ekit-admin-control-input ekit-all-control-input" name="ekit_all_activation_input_widget_<?php echo esc_attr($section_key); ?>" id="ekit_all_activation_input_widget_<?php echo esc_attr($section_key); ?>">
+                                                <label class="ekit-admin-control-label" for="ekit_all_activation_input_widget_<?php echo esc_attr($section_key); ?>">
+                                                    Disable All
+                                                    <span class="ekit-admin-control-label-switch" data-active="ON"
+                                                        data-inactive="OFF"></span>
+                                                    Enable All
+                                                </label>                                        
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="ekit-admin-input-switch">
                                         <button class="attr-btn-primary attr-btn ekit-admin-settings-form-submit"><div class="ekit-spinner"></div><i class="ekit-admin-save-icon fa fa-check-circle"></i><?php esc_html_e('Save Changes', 'elementskit-lite'); ?></button>
                                     </div>

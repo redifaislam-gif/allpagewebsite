@@ -33,6 +33,9 @@ class ElementsKit_Widget_Team extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
 

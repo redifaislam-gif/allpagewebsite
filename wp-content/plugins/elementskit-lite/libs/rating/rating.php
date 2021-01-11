@@ -1,13 +1,13 @@
 <?php
 
-namespace Wpmet\Rating;
+namespace Wpmet\Libs;
 
 defined('ABSPATH') || exit;
 
 use DateTime;
 use Oxaim\Libs\Notice as LibsNotice;
 
-if (!class_exists('Wpmet\Rating\Rating')) {
+if (!class_exists('Wpmet\Libs\Rating')) {
 
     /**
      * Asking client for rating and
@@ -18,6 +18,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
     class Rating
     {
         private $plugin_name;
+        private $priority = 10;
         private $days;
         private $rating_url;
         private $version;
@@ -25,13 +26,15 @@ if (!class_exists('Wpmet\Rating\Rating')) {
         private $text_domain;
         private $plugin_logo;
         private $plugin_screens;
+        private $duplication = false;
+        private $never_show_triggered = false;
 
         /**
          * scripts version
          *
          * @var string
          */
-        protected $script_version = '1.0.1';
+        protected $script_version = '2.0.0';
 
         private static $instance;
 
@@ -92,6 +95,15 @@ if (!class_exists('Wpmet\Rating\Rating')) {
             return $this;
         }
 
+        /**
+         * @param
+         */
+        public function set_priority($priority)
+        {
+            $this->priority = $priority;
+            return $this;
+        }
+
         public function set_first_appear_day($days = 7)
         {
             $this->days = $days;
@@ -142,7 +154,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
         protected function is_current_screen_allowed($current_screen_id)
         {
-            if (in_array($current_screen_id, $this->plugin_screens)) {
+            if (in_array($current_screen_id, array_merge($this->plugin_screens, ['dashboard', 'plugins']))) {
                 return true;
             }
 
@@ -156,7 +168,9 @@ if (!class_exists('Wpmet\Rating\Rating')) {
          */
         public function call()
         {
-            add_action('admin_head', [$this, 'fire']);
+         
+            $this->init();
+            add_action('admin_head', [$this, 'fire'], $this->priority);
         }
 
         /**
@@ -167,19 +181,19 @@ if (!class_exists('Wpmet\Rating\Rating')) {
         public function fire()
         {
 
-            $current_screen = get_current_screen();
-            if (!$this->is_current_screen_allowed($current_screen->id)) {
-                return;
-            }
-
-            if ($this->condition_status === false) {
-                return;
-            }
-
             if (current_user_can('update_plugins')) {
-                add_action('admin_footer',                  [$this, 'scripts'], 9999);
-                add_action('wp',                            [$this, 'cron_activation']);
-                add_action($this->plugin_name . '_cronjob', [$this, 'corn_job_func']);
+
+                $current_screen = get_current_screen();
+
+                if (!$this->is_current_screen_allowed($current_screen->id)) {
+                    return;
+                }
+
+                if ($this->condition_status === false) {
+                    return;
+                }
+
+                add_action('admin_footer', [$this, 'scripts'], 9999);
 
 
                 if ($this->action_on_fire()) {
@@ -187,26 +201,35 @@ if (!class_exists('Wpmet\Rating\Rating')) {
                         $this->set_installation_date();
                     }
 
-                    if (get_option($this->plugin_name . '_ask_me_later') == 'yes' && get_option($this->plugin_name . '_never_show') != 'yes') {
-                        $this->ask_me_later();
+                   
+                    if (get_option($this->text_domain . '_never_show') == 'yes') {
+                        
+                        return;
                     }
-                    if (get_option($this->plugin_name . '_never_show') != 'yes') {
-                        if (get_option($this->plugin_name . '_ask_me_later') == 'yes') {
-                            return;
-                        }
 
-                        $this->is_used_in($this->days);
+                
+                    // $this->display_message_box();
+
+
+                    if (get_option($this->text_domain . '_ask_me_later') == 'yes') {
+                      
+                        $this->days = '30';
+                        $this->duplication = true;
+                        $this->never_show_triggered = true;
+                        if($this->get_remaining_days() >= $this->days){
+                            $this->duplication = false;
+                        }
                     }
+
+                    $this->display_message_box();
+
+                    
+                 
                 }
             }
         }
 
-        public function cron_activation()
-        {
-            if (!wp_next_scheduled($this->plugin_name . '_cronjob')) {
-                wp_schedule_event(time(), 'daily', $this->plugin_name . '_cronjob');
-            }
-        }
+       
 
         private function action_on_fire()
         {
@@ -216,23 +239,23 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
         public function set_installation_date()
         {
-            add_option($this->plugin_name . '_install_date', date('Y-m-d h:i:s'));
+            add_option($this->text_domain . '_install_date', date('Y-m-d h:i:s'));
         }
 
         public function is_installation_date_exists()
         {
-            return (get_option($this->plugin_name . '_install_date') == false) ? false : true;
+            return (get_option($this->text_domain . '_install_date') == false) ? false : true;
         }
 
         public function get_installation_date()
         {
-            return get_option($this->plugin_name . '_install_date');
+            return get_option($this->text_domain . '_install_date');
         }
 
         public function set_first_action_date()
         {
-            add_option($this->plugin_name . '_first_action_Date', date('Y-m-d h:i:s'));
-            add_option($this->plugin_name . '_first_action', 'yes');
+            add_option($this->text_domain . '_first_action_Date', date('Y-m-d h:i:s'));
+            add_option($this->text_domain . '_first_action', 'yes');
         }
 
         public function get_days($from_date, $to_date)
@@ -242,69 +265,18 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
         public function is_first_use($in_days)
         {
-            $install_date  = get_option($this->plugin_name . '_install_date');
+            $install_date  = get_option($this->text_domain . '_install_date');
             $display_date  = date('Y-m-d h:i:s');
             $datetime1     = new DateTime($install_date);
             $datetime2     = new DateTime($display_date);
             $diff_interval = $this->get_days($datetime1, $datetime2);
 
-            if ($diff_interval >= $in_days && get_option($this->plugin_name . '_first_action_Date') == "yes") {
+            if (abs($diff_interval) >= $in_days && get_option($this->text_domain . '_first_action_Date') == "yes") {
 
                 // action implementation here
 
             }
         }
-
-        public function is_used_in($days)
-        {
-
-            $install_date  = get_option($this->plugin_name . '_install_date');
-            $display_date  = date('Y-m-d h:i:s');
-            $datetime1     = new DateTime($install_date);
-            $datetime2     = new DateTime($display_date);
-            $diff_interval = $this->get_days($datetime1, $datetime2);
-            $plugin_name   = $this->plugin_name;
-
-            if ($diff_interval >= $days) {
-                $message = "Hello! Seems like you have used {$plugin_name} to build this website — Thanks a lot! <br>
-                            Could you please do us a <b>big favor</b> and give it a <b>5-star</b> rating on WordPress? 
-                            This would boost our motivation and help other users make a comfortable decision while choosing the {$plugin_name}";
-
-                LibsNotice::instance($this->text_domain, '_plugin_rating_msg_used_in_day')
-                    ->set_dismiss('global', (3600 * 24 * 15))
-                    ->set_message($message)
-                    ->set_logo($this->plugin_logo, "max-height: 100px")
-                    ->set_button([
-                        'url' => $this->rating_url,
-                        'text' =>  esc_html__('Ok, you deserved it', $this->text_domain),
-                        'class' => 'button-primary',
-                        'id' => 'btn_deserved',
-                    ])
-                    ->set_button([
-                        'url' => '#',
-                        'text' => esc_html__('I already did', $this->text_domain),
-                        'class' => 'button-default',
-                        'id' => 'btn_already_did',
-                        'icon' => 'dashicons-before dashicons-smiley'
-                    ])
-                    ->set_button([
-                        'url' => 'https://help.wpmet.com/',
-                        'text' => esc_html('I need support',$this->text_domain),
-                        'class' => 'button-default',
-                        'id' => '#',
-                        'icon' => 'dashicons-before dashicons-sos',
-                    ])
-                    ->set_button([
-                        'url' => '#',
-                        'text' => esc_html__('No, not good enough', $this->text_domain),
-                        'class' => 'button-default',
-                        'id' => 'btn_not_good',
-                        'icon' => 'dashicons-before dashicons-thumbs-down',
-                    ])
-                    ->call();
-            }
-        }
-
 
         /**
          * ---------------------------------------------
@@ -318,47 +290,62 @@ if (!class_exists('Wpmet\Rating\Rating')) {
             add_option($plugin_name . '_never_show', 'yes');
         }
 
+        public function get_remaining_days(){
+            $install_date  = get_option($this->text_domain . '_install_date');
+            $display_date  = date('Y-m-d h:i:s');
+            $datetime1     = new DateTime($install_date);
+            $datetime2     = new DateTime($display_date);
+            $diff_interval = $this->get_days($datetime1, $datetime2);
+            return abs($diff_interval);
+        }
 
         /**
          *----------------------------------
          *  Ask me later functionality
          *----------------------------------
          */
-        public function ask_me_later()
+        public function display_message_box()
         {
 
-            $days = 30;
+            if(!$this->duplication){
+                global $wpmet_libs_execution_container;
+            
+                if(isset($wpmet_libs_execution_container['rating'])){
+                    return;
+                }
+           
+            }
+            
 
-            $install_date  = get_option($this->plugin_name . '_install_date');
+            $wpmet_libs_execution_container['rating'] = __FILE__;
+
+            $install_date  = get_option($this->text_domain . '_install_date');
             $display_date  = date('Y-m-d h:i:s');
             $datetime1     = new DateTime($install_date);
             $datetime2     = new DateTime($display_date);
             $diff_interval = $this->get_days($datetime1, $datetime2);
+            if (abs($diff_interval) >= $this->days) {
 
-            $plugin_name = $this->plugin_name;
+                $not_good_enough_btn_id =  ($this->never_show_triggered) ? '_btn_never_show' : '_btn_not_good';
 
-            if ($diff_interval >= $days) {
-
-
-                $message = "Hello! Seems like you have used {$plugin_name} to build this website — Thanks a lot! <br>
+                $message = "Hello! Seems like you have used {$this->plugin_name} to build this website — Thanks a lot! <br>
                             Could you please do us a <b>big favor</b> and give it a <b>5-star</b> rating on WordPress? 
-                            This would boost our motivation and help other users make a comfortable decision while choosing the {$plugin_name}";
+                            This would boost our motivation and help other users make a comfortable decision while choosing the {$this->plugin_name}";
 
                 LibsNotice::instance($this->text_domain, '_plugin_rating_msg_used_in_day')
-                    ->set_dismiss('global', (3600 * 24 * 15))
                     ->set_message($message)
-                    ->set_logo($this->plugin_logo, "max-height: 100px")
+                    ->set_logo($this->plugin_logo, "max-height: 100px !important")
                     ->set_button([
                         'url' => $this->rating_url,
                         'text' => 'Ok, you deserved it',
                         'class' => 'button-primary',
-                        'id' => 'btn_deserved',
+                        'id' => $this->text_domain . '_btn_deserved',
                     ])
                     ->set_button([
                         'url' => '#',
                         'text' => 'I already did',
                         'class' => 'button-default',
-                        'id' => 'btn_already_did',
+                        'id' => $this->text_domain. '_btn_already_did',
                         'icon' => 'dashicons-before dashicons-smiley'
                     ])
                     ->set_button([
@@ -372,7 +359,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
                         'url' => '#',
                         'text' => 'No, not good enough',
                         'class' => 'button-default',
-                        'id' => 'btn_not_good',
+                        'id' => $this->text_domain .  $not_good_enough_btn_id ,
                         'icon' => 'dashicons-before dashicons-thumbs-down',
                     ])
                     ->call();
@@ -392,8 +379,6 @@ if (!class_exists('Wpmet\Rating\Rating')) {
         public static function ask_me_later_message()
         {
             $plugin_name = $_POST['plugin_name'];
-
-
             if (get_option($plugin_name . '_ask_me_later') == false) {
                 add_option($plugin_name . '_ask_me_later', 'yes');
             } else {
@@ -424,7 +409,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
         public function get_previous_version()
         {
 
-            return get_option($this->plugin_name . '_version');
+            return get_option($this->text_domain . '_version');
         }
 
         /**
@@ -435,10 +420,10 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
         public function set_version($version)
         {
-            if (!get_option($this->plugin_name . '_version')) {
-                add_option($this->plugin_name . '_version');
+            if (!get_option($this->text_domain . '_version')) {
+                add_option($this->text_domain . '_version');
             } else {
-                update_option($this->plugin_name . '_version', $version);
+                update_option($this->text_domain . '_version', $version);
             }
         }
 
@@ -451,10 +436,12 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
         public function scripts()
         {
+
             echo "
                 <script>
                 jQuery(document).ready(function ($) {
-                    $( '#btn_already_did' ).on( 'click', function() {
+                    
+                    $( '#".$this->text_domain."_btn_already_did' ).on( 'click', function() {
 
                         $.ajax({
                             url: ajaxurl,
@@ -472,7 +459,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
 
                     });
 
-                    $('#btn_deserved').click(function(){
+                    $('#".$this->text_domain."_btn_deserved').click(function(){
                         $.ajax({
                             url: ajaxurl,
                             type: 'POST',
@@ -488,7 +475,7 @@ if (!class_exists('Wpmet\Rating\Rating')) {
                         });
                     });
 
-                    $('#btn_not_good').click(function(){
+                    $('#".$this->text_domain."_btn_not_good').click(function(){
                         $.ajax({
                             url: ajaxurl,
                             type: 'POST',
@@ -503,49 +490,26 @@ if (!class_exists('Wpmet\Rating\Rating')) {
                             }
                         });
                     });
+                    
+                    $('#".$this->text_domain."_btn_never_show').click(function(){
+                        $.ajax({
+                            url: ajaxurl,
+                            type: 'POST',
+                            data: {
+                                action 	: 'wpmet_rating_never_show_message',
+                                plugin_name : '" . $this->text_domain . "',
+
+                            },
+                            success:function(response){
+                                $('#" . $this->text_domain . "-_plugin_rating_msg_used_in_day').remove();
+
+                            }
+                        });
+                    });
 
                 });
                 </script>
 		";
-        }
-
-        /**
-         * Cron job activities. Where it will check basic
-         * functionality every day.
-         *
-         */
-        public function corn_job_func()
-        {
-
-            if ($this->get_current_version() != $this->get_previous_version()) {
-
-                $this->set_version($this->get_current_version());
-            }
-
-            if ($this->action_on_fire()) {
-                if (
-                    get_option($this->plugin_name . '_ask_me_later') == 'yes'
-                    && get_option($this->plugin_name . '_never_show') != 'yes'
-                ) {
-                    $this->ask_me_later();
-                }
-
-                if (get_option($this->plugin_name . '_never_show') != 'yes') {
-                    if (get_option($this->plugin_name . '_ask_me_later') == 'yes') {
-                        return;
-                    }
-
-                    if (!$this->is_installation_date_exists()) {
-                        $this->set_installation_date();
-                    }
-
-                    $this->is_used_in($this->days);
-
-                    add_action('admin_footer',                              [$this, 'scripts'], 9999);
-                    add_action("wp_ajax_wpmet_rating_never_show_message",   [$this, "never_show_message"]);
-                    add_action("wp_ajax_wpmet_rating_ask_me_later_message", [$this, "ask_me_later_message"]);
-                }
-            }
         }
     }
 }

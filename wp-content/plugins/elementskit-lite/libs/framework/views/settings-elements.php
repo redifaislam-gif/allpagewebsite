@@ -7,6 +7,7 @@ $widgets_active = (!isset($widgets_active[0]) ? array_keys($widgets_active) : $w
 
 <div class="ekit-admin-fields-container">
     <span class="ekit-admin-fields-container-description"><?php esc_html_e('You can disable the elements you are not using on your site. That will disable all associated assets of those widgets to improve your site loading speed.', 'elementskit-lite'); ?></span>
+
     <div class="ekit-admin-fields-container-fieldset">
         <div class="attr-row">
             <?php foreach($widgets_all as $widget => $widget_config): ?>

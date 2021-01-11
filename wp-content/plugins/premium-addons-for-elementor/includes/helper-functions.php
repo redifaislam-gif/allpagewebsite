@@ -514,8 +514,10 @@ class Helper_Functions {
 
 		$expire_time = 24 * HOUR_IN_SECONDS;
 
-        if ( 'minute' === $period ) {
+		if ( 'minute' === $period ) {
 			$expire_time = MINUTE_IN_SECONDS;
+		} elseif ( 'minutes' === $period ) {
+			$expire_time = 5 * MINUTE_IN_SECONDS;
 		} elseif ( 'hour' === $period ) {
 			$expire_time = 60 * MINUTE_IN_SECONDS;
 		} elseif ( 'week' === $period ) {

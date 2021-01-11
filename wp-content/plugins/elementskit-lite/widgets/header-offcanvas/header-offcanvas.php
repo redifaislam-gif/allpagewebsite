@@ -29,6 +29,10 @@ class ElementsKit_Widget_Header_Offcanvas extends Widget_Base
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls()
     {
 
@@ -532,6 +536,28 @@ class ElementsKit_Widget_Header_Offcanvas extends Widget_Base
 				'selector' => '{{WRAPPER}} .ekit-wid-con .ekit-sidebar-widget',
 			]
 		);
+
+        // Position
+        $this->add_control(
+            'ekit_offcanvas_position',
+            [
+                'label'         => esc_html__( 'Position', 'elementskit-lite' ),
+                'type'          => Controls_Manager::CHOOSE,
+                'options'       => [
+                    'left'  => [
+                        'title' => esc_html__( 'Left', 'elementskit-lite' ),
+                        'icon'  => 'eicon-chevron-left',
+                    ],
+                    'right' => [
+                        'title' => esc_html__( 'Right', 'elementskit-lite' ),
+                        'icon'  => 'eicon-chevron-right',
+                    ],
+                ],
+                'default'       => 'right',
+                'toggle'        => false,
+                'prefix_class'  => 'ekit-off-canvas-position-',
+            ]
+        );
 
 		$this->end_controls_section();
 

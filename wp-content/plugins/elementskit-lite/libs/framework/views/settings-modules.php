@@ -7,9 +7,13 @@ $modules_active = (!isset($modules_active[0]) ? array_keys($modules_active) : $m
 
 <div class="ekit-admin-fields-container">
     <span class="ekit-admin-fields-container-description"><?php esc_html_e('You can disable the modules you are not using on your site. That will disable all associated assets of those modules to improve your site loading speed.', 'elementskit-lite'); ?></span>
+
     <div class="ekit-admin-fields-container-fieldset">
         <div class="attr-hidden" id="elementskit-template-admin-menu">
             <li><a href="edit.php?post_type=elementskit_template"><?php esc_html_e('Header Footer', 'elementskit-lite'); ?></a></li>
+        </div>
+        <div class="attr-hidden" id="elementskit-template-widget-menu">
+            <li><a href="edit.php?post_type=elementskit_widget"><?php esc_html_e('Widget Builder', 'elementskit-lite'); ?></a></li>
         </div>
         <div class="attr-row">
             <?php foreach($modules_all as $module => $module_config): if(isset($module_config['package'])): ?>

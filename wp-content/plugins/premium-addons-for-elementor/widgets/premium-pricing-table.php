@@ -116,7 +116,7 @@ class Premium_Pricing_Table extends Widget_Base {
 		return array( 'premium-elements' );
 	}
 
-    /**
+	/**
 	 * Retrieve Widget Support URL.
 	 *
 	 * @access public

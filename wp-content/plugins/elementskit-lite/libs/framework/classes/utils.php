@@ -27,6 +27,18 @@ class Utils{
         update_option('elementskit_options', $data_all);
     }
 
+    /*
+        -> this method used to check weather the widget active/deactive
+        -> this method takes two paramitter 1. widget name 2. Active/deactive hook
+     */ 
+    public function is_widget_active_class( $widget_name, $pro_active ){
+        if($pro_active){
+            return 'label-'.$widget_name.' attr-panel-heading';
+        }else{
+            return 'label-'.$widget_name.' attr-panel-heading pro-disabled';
+        }
+    }
+
     public function input($input_options){
         $defaults = [
             'type' => null,
