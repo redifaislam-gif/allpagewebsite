@@ -553,7 +553,7 @@ class Premium_Carousel extends Widget_Base {
 
 		$docs = array(
 			'https://premiumaddons.com/docs/i-can-see-the-first-slide-only-in-carousel-widget' => __( 'Issue: I can see the first slide only »', 'premium-addons-for-elementor' ),
-			'https://premiumaddons.com/docs/how-to-create-elementor-template-to-be-used-with-premium-addons' => __( 'How to create an Elementor template to be used in Premium Carousel »', 'premium-addons-for-elementor' ),
+			'https://premiumaddons.com/docs/how-to-create-elementor-template-to-be-used-with-premium-addons' => __( 'How to create an Elementor template to be used in Carousel widget »', 'premium-addons-for-elementor' ),
 			'https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/' => __( 'I\'m not able to see Font Awesome icons in the widget »', 'premium-addons-for-elementor' ),
 			'https://premiumaddons.com/docs/how-to-add-entrance-animations-to-elementor-elements-in-premium-carousel-widget/' => __( 'How to add entrance animations to the elements inside Premium Carousel Widget »', 'premium-addons-for-elementor' ),
 			'https://premiumaddons.com/docs/how-to-use-elementor-widgets-to-navigate-through-carousel-widget-slides/' => __( 'How To Use Elementor Widgets To Navigate Through Carousel Widget Slides »', 'premium-addons-for-elementor' ),

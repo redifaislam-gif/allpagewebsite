@@ -14,6 +14,7 @@ if(!class_exists('\Wpmet\Libs\Pro_Awareness')) :
 		private $text_domain;
 		private $plugin_file;
 		private $parent_menu_slug;
+		private $menu_slug = '_get_help';
 		private $default_grid_link  = 'https://help.wpmet.com/';
 		private $default_grid_title = 'Support Center';
 		private $default_grid_thumbnail = '';
@@ -26,7 +27,7 @@ if(!class_exists('\Wpmet\Libs\Pro_Awareness')) :
 		private $parent_menu_text = 'Get Help';
 
 
-		protected $script_version = '1.0.2';
+		protected $script_version = '1.0.3';
 
 		/**
 		 * Get version of this script
@@ -113,6 +114,14 @@ if(!class_exists('\Wpmet\Libs\Pro_Awareness')) :
 			return $this;
 		}
 
+
+		public function set_menu_slug($slug) {
+
+			$this->menu_slug = $slug;
+
+			return $this;
+		}
+
 		public function set_plugin_file($plugin_file) {
 
 			$this->plugin_file = $plugin_file;
@@ -177,7 +186,7 @@ if(!class_exists('\Wpmet\Libs\Pro_Awareness')) :
 
 			if(!empty($this->grids)) {
 
-				add_submenu_page($this->parent_menu_slug, $this->parent_menu_text, $this->parent_menu_text, 'manage_options', $this->text_domain . '_get_help', [$this, 'generate_grids']);
+				add_submenu_page($this->parent_menu_slug, $this->parent_menu_text, $this->parent_menu_text, 'manage_options', $this->text_domain . $this->menu_slug, [$this, 'generate_grids']);
 			}
 		}
 

@@ -1250,6 +1250,7 @@
 
         var $blogElement = $scope.find(".premium-blog-wrap"),
             $blogPost = $blogElement.find(".premium-blog-post-outer-container"),
+            scrollAfter = $blogElement.data("scroll"),
             carousel = $blogElement.data("carousel"),
             grid = $blogElement.data("grid"),
             layout = $blogElement.data("layout"),
@@ -1282,22 +1283,14 @@
 
                 $(this).addClass("active");
 
-                // var selector = $(this).attr("data-filter");
-
                 //Get clicked tab slug
                 activeCategory = $(this).attr("data-filter");
 
                 //Make sure to reset pagination before sending our AJAX request
                 pageNumber = 1;
 
-                getPostsByAjax(true);
+                getPostsByAjax(scrollAfter);
 
-                // console.log(selector);
-                // $blogElement.isotope({
-                //     filter: selector,
-                //     layoutMode: "even" === layout ? "fitRows" : "masonry"
-                // });
-                // return false;
             });
         }
 
@@ -1317,7 +1310,7 @@
                 });
             }
         } else {
-            //If `All` categories not exist, then we need to get posts through AJAX
+            //If `All` categories not exist, then we need to get posts through AJAX.
             getPostsByAjax(false);
         }
 
@@ -1437,7 +1430,7 @@
                     pageNumber = $(this).html();
                 }
 
-                getPostsByAjax(true);
+                getPostsByAjax(scrollAfter);
 
             })
         }
@@ -1770,28 +1763,41 @@
     $(window).on("elementor/frontend/init", function () {
 
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-video-box.default", PremiumVideoBoxWidgetHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-img-gallery.default", PremiumGridWidgetHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-fancy-text.default", PremiumFancyTextHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-counter.default", PremiumCounterHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-title.default", PremiumTitleHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-countdown-timer.default", PremiumCountDownHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-carousel-widget.default", PremiumCarouselHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-banner.default", PremiumBannerHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-modal-box.default", PremiumModalBoxHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-blog.default", PremiumBlogHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-image-scroll.default", PremiumImageScrollHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-contact-form.default", PremiumContactFormHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-person.default", PremiumTeamMembersHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-icon-list.default", PremiumIconListHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-button.default", PremiumButtonHandler);
+
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-image-button.default", PremiumButtonHandler);
 
         if (elementorFrontend.isEditMode()) {
-            elementorFrontend.hooks.addAction(
-                "frontend/element_ready/premium-addon-progressbar.default", PremiumProgressBarWidgetHandler);
+            elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-progressbar.default", PremiumProgressBarWidgetHandler);
         } else {
-            elementorFrontend.hooks.addAction(
-                "frontend/element_ready/premium-addon-progressbar.default", PremiumProgressBarScrollWidgetHandler);
+            elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-progressbar.default", PremiumProgressBarScrollWidgetHandler);
         }
     });
 })(jQuery);

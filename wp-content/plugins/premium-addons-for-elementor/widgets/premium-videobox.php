@@ -390,8 +390,7 @@ class Premium_Videobox extends Widget_Base {
 				'dynamic'    => array(
 					'active'     => true,
 					'categories' => array(
-						TagsModule::POST_META_CATEGORY,
-						TagsModule::URL_CATEGORY,
+						TagsModule::MEDIA_CATEGORY,
 					),
 				),
 				'media_type' => 'video',
@@ -564,18 +563,22 @@ class Premium_Videobox extends Widget_Base {
 			)
 		);
 
+		$left_direction = is_rtl() ? 'right' : 'left';
+
+		$right_direction = is_rtl() ? 'left' : 'right';
+
 		$this->add_control(
 			'premium_video_box_sticky_position',
 			array(
 				'label'        => __( 'Position', 'premium-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'top-left'     => __( 'Top Left', 'premium-addons-for-elementor' ),
-					'top-right'    => __( 'Top Right', 'premium-addons-for-elementor' ),
-					'bottom-left'  => __( 'Bottom Left', 'premium-addons-for-elementor' ),
-					'bottom-right' => __( 'Bottom Right', 'premium-addons-for-elementor' ),
-					'center-left'  => __( 'Center Left', 'premium-addons-for-elementor' ),
-					'center-right' => __( 'Center Right', 'premium-addons-for-elementor' ),
+					'top-left'     => sprintf( __( 'Top %s', 'premium-addons-for-elementor' ), ucfirst( $left_direction ) ),
+					'top-right'    => sprintf( __( 'Top %s', 'premium-addons-for-elementor' ), ucfirst( $right_direction ) ),
+					'bottom-left'  => sprintf( __( 'Bottom %s', 'premium-addons-for-elementor' ), ucfirst( $left_direction ) ),
+					'bottom-right' => sprintf( __( 'Bottom %s', 'premium-addons-for-elementor' ), ucfirst( $right_direction ) ),
+					'center-left'  => sprintf( __( 'Center %s', 'premium-addons-for-elementor' ), ucfirst( $left_direction ) ),
+					'center-right' => sprintf( __( 'Center %s', 'premium-addons-for-elementor' ), ucfirst( $right_direction ) ),
 				),
 				'default'      => 'bottom-left',
 				'conditions'   => $sticky_condition,
@@ -1165,7 +1168,7 @@ class Premium_Videobox extends Widget_Base {
 					'premium_video_box_play_icon_switcher' => 'yes',
 				),
 				'selectors'   => array(
-					'{{WRAPPER}} .premium-video-box-play-icon-container' => 'left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .premium-video-box-play-icon-container' => $left_direction . ': {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1262,7 +1265,7 @@ class Premium_Videobox extends Widget_Base {
 					'premium_video_box_video_text_switcher' => 'yes',
 				),
 				'selectors'   => array(
-					'{{WRAPPER}} .premium-video-box-description-container' => 'left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .premium-video-box-description-container' => $left_direction . ': {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1697,6 +1700,8 @@ class Premium_Videobox extends Widget_Base {
 			)
 		);
 
+		$spacing = is_rtl() ? 'RIGHT' : 'LEFT';
+
 		$this->add_responsive_control(
 			'sticky_video_margin',
 			array(
@@ -1704,12 +1709,12 @@ class Premium_Videobox extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.premium-video-sticky-top-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'top: {{TOP}}{{UNIT}}; right: {{RIGHT}}{{UNIT}};',
-					'{{WRAPPER}}.premium-video-sticky-top-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'top: {{TOP}}{{UNIT}}; left: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}}.premium-video-sticky-bottom-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'bottom: {{BOTTOM}}{{UNIT}}; right: {{RIGHT}}{{UNIT}};',
-					'{{WRAPPER}}.premium-video-sticky-bottom-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'bottom: {{BOTTOM}}{{UNIT}}; left: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}}.premium-video-sticky-center-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'left: {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}}.premium-video-sticky-center-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'right: {{RIGHT}}{{UNIT}};',
+					'{{WRAPPER}}.premium-video-sticky-top-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'top: {{TOP}}{{UNIT}}; ' . $right_direction . ': {{RIGHT}}{{UNIT}}',
+					'{{WRAPPER}}.premium-video-sticky-top-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'top: {{TOP}}{{UNIT}}; ' . $left_direction . ': {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}}.premium-video-sticky-bottom-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'bottom: {{BOTTOM}}{{UNIT}}; ' . $right_direction . ': {{RIGHT}}{{UNIT}}',
+					'{{WRAPPER}}.premium-video-sticky-bottom-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => 'bottom: {{BOTTOM}}{{UNIT}}; ' . $left_direction . ': {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}}.premium-video-sticky-center-left .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => $left_direction . ': {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}}.premium-video-sticky-center-right .premium-video-box-sticky-apply .premium-video-box-inner-wrap' => $right_direction . ': {{RIGHT}}{{UNIT}}',
 				),
 			)
 		);

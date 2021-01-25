@@ -68,16 +68,31 @@ class Plugin{
         $filter_string .= (!class_exists('\MetForm_Pro\Plugin') ? '' : ',metform-pro');
 
 
-        /**
-         * Show WPMET stories widget in dashboard
-         */
-        \Wpmet\Libs\Stories::instance('elementskit-lite')
-        // ->is_test(true)
-        ->set_filter($filter_string)
-        ->set_plugin('ElementsKit', 'https://wpmet.com/plugin/elementskit/')
-        ->set_api_url('https://api.wpmet.com/public/stories/')
-        ->call();
+        if(Libs\Framework\Classes\Utils::instance()->get_settings('ekit_user_consent_for_banner', 'yes') == 'yes'){
+            /**
+             * Show WPMET stories widget in dashboard
+             */
+            \Wpmet\Libs\Stories::instance('elementskit-lite')
+            // ->is_test(true)
+            ->set_filter($filter_string)
+            ->set_plugin('ElementsKit', 'https://wpmet.com/plugin/elementskit/')
+            ->set_api_url('https://api.wpmet.com/public/stories/')
+            ->call();
 
+
+            /**
+             * Show WPMET banner (codename: jhanda)
+             */
+            \Wpmet\Libs\Banner::instance('elementskit-lite')
+            // ->is_test(true)
+            ->set_filter(ltrim($filter_string, ','))
+            ->set_api_url('https://api.wpmet.com/public/jhanda')
+            ->set_plugin_screens('edit-elementskit_template')
+            ->set_plugin_screens('toplevel_page_elementskit')
+            ->call();
+        }
+        
+        
         /**
          * ----------------------------------------
          *  Ask for rating ⭐⭐⭐⭐⭐
@@ -87,7 +102,7 @@ class Plugin{
          */
         
         \Wpmet\Libs\Rating::instance('elementskit-lite')
-        ->set_plugin('ElementsKit', 'https://wordpress.org/plugins/elementskit-lite/')
+        ->set_plugin('ElementsKit', 'https://wpmet.com/wordpress.org/rating/elementskit')
         ->set_plugin_logo('https://ps.w.org/elementskit-lite/assets/icon-128x128.png','width:150px !important')
         ->set_allowed_screens('edit-elementskit_template')
         ->set_allowed_screens('toplevel_page_elementskit')
@@ -97,18 +112,6 @@ class Plugin{
         ->set_condition(true)
         ->call();
 
-
-
-        /**
-         * Show WPMET banner (codename: jhanda)
-         */
-        \Wpmet\Libs\Banner::instance('elementskit-lite')
-        // ->is_test(true)
-        ->set_filter(ltrim($filter_string, ','))
-        ->set_api_url('https://api.wpmet.com/public/jhanda')
-        ->set_plugin_screens('edit-elementskit_template')
-        ->set_plugin_screens('toplevel_page_elementskit')
-        ->call();
 
 	    $is_pro_active = in_array('elementskit/elementskit.php', apply_filters('active_plugins', get_option('active_plugins')));
 

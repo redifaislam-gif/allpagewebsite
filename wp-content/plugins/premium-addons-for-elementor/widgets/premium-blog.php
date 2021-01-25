@@ -326,7 +326,7 @@ class Premium_Blog extends Widget_Base {
 				// Get all taxonomy values under the taxonomy.
 				foreach ( $taxonomy as $index => $tax ) {
 
-					$terms = get_terms( $index );
+					$terms = get_terms( $index, array( 'hide_empty' => false ) );
 
 					$related_tax = array();
 
@@ -784,6 +784,29 @@ class Premium_Blog extends Widget_Base {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .premium-blog-content-wrapper' => 'justify-content: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'scroll_to_offset',
+			array(
+				'label'       => __( 'Scroll After Pagination/Filter', 'premium-addons-for-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'description' => __( 'Enable this option to scroll to top offset of the widget after click pagination or filter tabs.', 'premium-addons-for-ele,entor' ),
+				'default'     => 'yes',
+				'conditions'  => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'name'  => 'premium_blog_cat_tabs',
+							'value' => 'yes',
+						),
+						array(
+							'name'  => 'premium_blog_paging',
+							'value' => 'yes',
+						),
+					),
 				),
 			)
 		);
@@ -2701,7 +2724,15 @@ class Premium_Blog extends Widget_Base {
 
 		$carousel = 'yes' === $settings['premium_blog_carousel'] ? true : false;
 
-		$this->add_render_attribute( 'blog', 'class', 'premium-blog-wrap' );
+		$after_scroll = 'yes' === $settings['scroll_to_offset'] ? true : false;
+
+		$this->add_render_attribute(
+			'blog',
+			array(
+				'class'       => 'premium-blog-wrap',
+				'data-scroll' => $after_scroll,
+			)
+		);
 
 		if ( 'yes' === $settings['premium_blog_grid'] ) {
 

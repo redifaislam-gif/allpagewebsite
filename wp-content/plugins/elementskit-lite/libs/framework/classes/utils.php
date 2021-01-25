@@ -21,6 +21,11 @@ class Utils{
         return (isset($data_all[$key]) && $data_all[$key] != '') ? $data_all[$key] : $default;
     }
 
+    public function get_settings($key, $default = ''){
+        $data_all = $this->get_option('settings', []);
+        return (isset($data_all[$key]) && $data_all[$key] != '') ? $data_all[$key] : $default;
+    }
+
     public function save_option($key, $value = ''){
         $data_all = get_option(self::$key);
         $data_all[$key] = $value;

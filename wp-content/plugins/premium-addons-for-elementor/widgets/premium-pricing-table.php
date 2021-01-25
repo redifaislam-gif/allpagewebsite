@@ -2608,7 +2608,7 @@ class Premium_Pricing_Table extends Widget_Base {
 									echo wp_kses_post( $item['premium_pricing_list_item_text'] );
 									if ( 'yes' === $item['premium_pricing_table_item_tooltip'] && ! empty( $item['premium_pricing_table_item_tooltip_text'] ) ) :
 										?>
-										<span class="premium-pricing-list-tooltip"><?php echo esc_html( $item['premium_pricing_table_item_tooltip_text'] ); ?></span>
+										<span class="premium-pricing-list-tooltip"><?php echo wp_kses_post( $item['premium_pricing_table_item_tooltip_text'] ); ?></span>
 									<?php endif; ?>    
 								</span>
 							<?php endif; ?>

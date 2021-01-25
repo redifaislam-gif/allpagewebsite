@@ -1,8 +1,8 @@
 <?php
-
 /**
  * Premium Media Grid.
  */
+
 namespace PremiumAddons\Widgets;
 
 // Elementor Classes.
@@ -37,22 +37,57 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Premium_Grid extends Widget_Base {
 
+	/**
+	 * Retrieve Widget Name.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
 	public function get_name() {
 		return 'premium-img-gallery';
 	}
 
+	/**
+	 * Get Elementor Helper Instance.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
 	public function getTemplateInstance() {
-		return $this->templateInstance = Premium_Template_Tags::getInstance();
+		$this->template_instance = Premium_Template_Tags::getInstance();
+		return $this->template_instance;
 	}
 
+	/**
+	 * Retrieve Widget Title.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
 	public function get_title() {
 		return sprintf( '%1$s %2$s', Helper_Functions::get_prefix(), __( 'Media Grid', 'premium-addons-for-elementor' ) );
 	}
 
+	/**
+	 * Retrieve Widget Icon.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string widget icon.
+	 */
 	public function get_icon() {
 		return 'pa-grid-icon';
 	}
 
+	/**
+	 * Retrieve Widget Dependent CSS.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return array CSS style handles.
+	 */
 	public function get_style_depends() {
 		return array(
 			'pa-prettyphoto',
@@ -60,26 +95,64 @@ class Premium_Grid extends Widget_Base {
 		);
 	}
 
+	/**
+	 * Retrieve Widget Dependent JS.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return array JS script handles.
+	 */
 	public function get_script_depends() {
 		return array(
+			'imagesloaded',
 			'prettyPhoto-js',
 			'isotope-js',
 			'premium-addons',
 		);
 	}
 
+	/**
+	 * Widget preview refresh button.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
 	public function is_reload_preview_required() {
 		return true;
 	}
 
+	/**
+	 * Retrieve Widget Categories.
+	 *
+	 * @since 1.5.1
+	 * @access public
+	 *
+	 * @return array Widget categories.
+	 */
 	public function get_categories() {
 		return array( 'premium-elements' );
 	}
 
+	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
 	public function get_keywords() {
 		return array( 'layout', 'gallery', 'images', 'videos', 'portfolio', 'visual', 'masonry' );
 	}
 
+	/**
+	 * Retrieve Widget Support URL.
+	 *
+	 * @access public
+	 *
+	 * @return string support URL.
+	 */
 	public function get_custom_help_url() {
 		return 'https://premiumaddons.com/support/';
 	}
@@ -730,7 +803,7 @@ class Premium_Grid extends Widget_Base {
 					),
 				),
 				'fields'      => $img_repeater->get_controls(),
-				'title_field' => '{{{ "" !== premium_gallery_img_name ? premium_gallery_img_name : "Image" }}}' . ' - {{{ "" !== premium_gallery_img_category ? premium_gallery_img_category : "No Categories" }}}',
+				'title_field' => '{{{ "" !== premium_gallery_img_name ? premium_gallery_img_name : "Image" }}} - {{{ "" !== premium_gallery_img_category ? premium_gallery_img_category : "No Categories" }}}',
 			)
 		);
 
@@ -1105,9 +1178,10 @@ class Premium_Grid extends Widget_Base {
 		);
 
 		$docs = array(
-			'https://premiumaddons.com/docs/grid-widget-tutorial' => 'Getting started »',
-			'https://premiumaddons.com/docs/how-to-assign-an-image-to-multiple-categories' => 'How to assign a grid item to multiple categories »',
-			'https://premiumaddons.com/docs/how-to-open-a-popup-lightbox-through-a-grid-image' => 'How to open an Elementor popup/lightbox using a grid item »',
+			'https://premiumaddons.com/docs/grid-widget-tutorial' => __( 'Getting started »', 'premium-addons-for-elementor' ),
+			'https://premiumaddons.com/docs/how-to-assign-an-image-to-multiple-categories' => __( 'How to assign a grid item to multiple categories »', 'premium-addons-for-elementor' ),
+			'https://premiumaddons.com/docs/how-to-link-categories-in-elementor-gallery-widget/' => __( 'How To Link Categories In Media Grid Widget »', 'premium-addons-for-elementor' ),
+			'https://premiumaddons.com/docs/how-to-open-a-popup-lightbox-through-a-grid-image' => __( 'How to open an Elementor popup/lightbox using a grid item »', 'premium-addons-for-elementor' ),
 		);
 
 		$doc_index = 1;
@@ -1119,7 +1193,7 @@ class Premium_Grid extends Widget_Base {
 				'doc_' . $doc_index,
 				array(
 					'type'            => Controls_Manager::RAW_HTML,
-					'raw'             => sprintf( '<a href="%s" target="_blank">%s</a>', $doc_url, __( $title, 'premium-addons-for-elementor' ) ),
+					'raw'             => sprintf( '<a href="%s" target="_blank">%s</a>', $doc_url, $title ),
 					'content_classes' => 'editor-pa-doc',
 				)
 			);
@@ -2178,7 +2252,7 @@ class Premium_Grid extends Widget_Base {
 
 	}
 
-	/*
+	/**
 	 * Filter Cats
 	 *
 	 * Formats Category to be inserted in class attribute.
@@ -2186,7 +2260,9 @@ class Premium_Grid extends Widget_Base {
 	 * @since 2.1.0
 	 * @access public
 	 *
-	 * @return string category slug
+	 * @param string $string category slug.
+	 *
+	 * @return string $cat_filtered slug filtered.
 	 */
 	public function filter_cats( $string ) {
 
@@ -2206,14 +2282,14 @@ class Premium_Grid extends Widget_Base {
 		return $cat_filtered;
 	}
 
-	/*
+	/**
 	 * Render Filter Tabs on the frontend
 	 *
 	 * @since 2.1.0
 	 * @access protected
 	 *
-	 * @param string $first Class for the first category
-	 * @param number $active_index active category index
+	 * @param string  $first Class for the first category.
+	 * @param integer $active_index active category index.
 	 */
 	protected function render_filter_tabs( $first, $active_index ) {
 
@@ -2223,10 +2299,10 @@ class Premium_Grid extends Widget_Base {
 
 		<div class="premium-img-gallery-filter">
 			<ul class="premium-gallery-cats-container">
-				<?php if ( 'yes' == $settings['premium_gallery_first_cat_switcher'] ) : ?>
+				<?php if ( 'yes' === $settings['premium_gallery_first_cat_switcher'] ) : ?>
 					<li>
-						<a href="javascript:;" class="category <?php echo $first; ?>" data-filter="*">
-							<span><?php echo $settings['premium_gallery_first_cat_label']; ?></span>
+						<a href="javascript:;" class="category <?php echo esc_attr( $first ); ?>" data-filter="*">
+							<span><?php echo wp_kses_post( $settings['premium_gallery_first_cat_label'] ); ?></span>
 						</a>
 					</li>
 					<?php
@@ -2255,8 +2331,8 @@ class Premium_Grid extends Widget_Base {
 						$this->add_render_attribute( $key, 'data-filter', $slug );
 						?>
 						<li>
-							<a href="javascript:;" <?php echo $this->get_render_attribute_string( $key ); ?>>
-								<span><?php echo $category['premium_gallery_img_cat']; ?></span>
+							<a href="javascript:;" <?php echo wp_kses_post( $this->get_render_attribute_string( $key ) ); ?>>
+								<span><?php echo wp_kses_post( $category['premium_gallery_img_cat'] ); ?></span>
 							</a>
 						</li>
 						<?php
@@ -2408,7 +2484,15 @@ class Premium_Grid extends Widget_Base {
 		}
 
 		$this->add_render_attribute(
-			'container',
+			'gallery_container',
+			array(
+				'class'         => 'premium-gallery-container',
+				'data-settings' => wp_json_encode( $grid_settings ),
+			)
+		);
+
+		$this->add_render_attribute(
+			'image_container',
 			'class',
 			array(
 				'pa-gallery-img-container',
@@ -2417,15 +2501,15 @@ class Premium_Grid extends Widget_Base {
 
 		?>
 
-	<div <?php echo $this->get_render_attribute_string( 'grid' ); ?>>
+	<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'grid' ) ); ?>>
 		<?php
-		if ( $filter == 'yes' ) :
+		if ( 'yes' === $filter ) :
 			$this->render_filter_tabs( $is_all_active, $active_category_index );
 		endif;
 		?>
-		
-		<div class="premium-gallery-container" data-settings='<?php echo wp_json_encode( $grid_settings ); ?>'>
-			
+
+		<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'gallery_container' ) ); ?>>
+
 			<?php if ( 'metro' === $layout ) : ?>
 				<div class="grid-sizer"></div>
 				<?php
@@ -2463,11 +2547,10 @@ class Premium_Grid extends Widget_Base {
 				if ( $image['premium_gallery_video'] ) {
 					$this->add_render_attribute( $key, 'class', 'premium-gallery-video-item' );
 				}
-
 				?>
-			<div <?php echo $this->get_render_attribute_string( $key ); ?>>
+				<div <?php echo wp_kses_post( $this->get_render_attribute_string( $key ) ); ?>>
 				<div class="pa-gallery-img <?php echo esc_attr( $skin ); ?>" onclick="">
-					<div <?php echo $this->get_render_attribute_string( 'container' ); ?>>
+					<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'image_container' ) ); ?>>
 						<?php
 							$video_link = $this->render_grid_item( $image, $index );
 
@@ -2521,7 +2604,7 @@ class Premium_Grid extends Widget_Base {
 							$no_follow = $image['premium_gallery_img_link']['nofollow'] ? 'rel="nofollow"' : '';
 
 							?>
-								<a class="pa-gallery-whole-link" href="<?php echo esc_attr( $icon_link ); ?>" <?php echo $external; ?><?php echo $no_follow; ?>></a>
+								<a class="pa-gallery-whole-link" href="<?php echo esc_attr( $icon_link ); ?>" <?php echo wp_kses_post( $external ); ?><?php echo wp_kses_post( $no_follow ); ?>></a>
 
 							<?php
 						} elseif ( 'link' === $image['premium_gallery_img_link_type'] ) {
@@ -2575,9 +2658,9 @@ class Premium_Grid extends Widget_Base {
 
 							?>
 
-								<a <?php echo $this->get_render_attribute_string( $lightbox_key ); ?>></a>
+								<a <?php echo wp_kses_post( $this->get_render_attribute_string( $lightbox_key ) ); ?>></a>
 
-								<?php
+							<?php
 						}
 					}
 					?>
@@ -2585,18 +2668,18 @@ class Premium_Grid extends Widget_Base {
 			</div>
 			<?php endforeach; ?>
 		</div>
-		
+
 		<?php if ( 'yes' === $settings['premium_gallery_load_more'] ) : ?>
 			<div class="premium-gallery-load-more premium-gallery-btn-hidden">
 				<button class="premium-gallery-load-more-btn">
-					<span><?php echo $settings['premium_gallery_load_more_text']; ?></span>
+					<span><?php echo wp_kses_post( $settings['premium_gallery_load_more_text'] ); ?></span>
 					<div class="premium-loader"></div>
 				</button>
 			</div>
 		<?php endif; ?>
-		
+
 	</div>
-	
+
 		<?php
 		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
 
@@ -2608,18 +2691,18 @@ class Premium_Grid extends Widget_Base {
 
 		<?php if ( 'yes' === $settings['premium_gallery_responsive_switcher'] ) : ?>
 		<style>
-			@media( min-width: <?php echo $min_size; ?> ) and ( max-width:<?php echo $max_size; ?> ) {
+			@media( min-width: <?php echo esc_attr( $min_size ); ?> ) and ( max-width:<?php echo esc_attr( $max_size ); ?> ) {
 				#premium-img-gallery-<?php echo esc_attr( $this->get_id() ); ?> .premium-gallery-caption {
 					display: none;
 				}  
 			}
 		</style>
 	<?php endif; ?>
-		
+
 		<?php
 	}
 
-	/*
+	/**
 	 * Render Grid Image
 	 *
 	 * Written in PHP and used to generate the final HTML for image.
@@ -2627,8 +2710,8 @@ class Premium_Grid extends Widget_Base {
 	 * @since 3.6.4
 	 * @access protected
 	 *
-	 * @param array $item grid image repeater item
-	 * @param number $index item index
+	 * @param array   $item image repeater item.
+	 * @param integer $index item index.
 	 */
 	protected function render_grid_item( $item, $index ) {
 
@@ -2679,25 +2762,25 @@ class Premium_Grid extends Widget_Base {
 
 		if ( $is_video ) {
 			?>
-			<div class="premium-gallery-video-wrap" data-type="<?php echo $item['premium_gallery_video_type']; ?>">
+			<div class="premium-gallery-video-wrap" data-type="<?php echo esc_attr( $item['premium_gallery_video_type'] ); ?>">
 				<?php if ( 'hosted' !== $item['premium_gallery_video_type'] ) : ?>
-					<div class="premium-gallery-iframe-wrap" data-src="<?php echo $link; ?>"></div>
+					<div class="premium-gallery-iframe-wrap" data-src="<?php echo esc_url( $link ); ?>"></div>
 					<?php
 				else :
 					$link = empty( $item['premium_gallery_video_self_url'] ) ? $item['premium_gallery_video_self']['url'] : $item['premium_gallery_video_self_url'];
 					?>
-					<video src="<?php echo esc_url( $link ); ?>" <?php echo Utils::render_html_attributes( $video_params ); ?>></video>
+					<video src="<?php echo esc_url( $link ); ?>" <?php echo wp_kses_post( Utils::render_html_attributes( $video_params ) ); ?>></video>
 				<?php endif; ?>
 			</div>
 		<?php } ?>
-				
-		<img <?php echo $this->get_render_attribute_string( $key ); ?>>    
+
+		<img <?php echo wp_kses_post( $this->get_render_attribute_string( $key ) ); ?>>
 		<?php
 
 		return ( isset( $link ) && ! empty( $link ) ) ? $link : false;
 	}
 
-	/*
+	/**
 	 * Render Icons
 	 *
 	 * Render Lightbox and URL Icons HTML
@@ -2705,8 +2788,8 @@ class Premium_Grid extends Widget_Base {
 	 * @since 3.6.4
 	 * @access protected
 	 *
-	 * @param array $item grid image repeater item
-	 * @param number $index item index
+	 * @param array   $item grid image repeater item.
+	 * @param integer $index item index.
 	 */
 	protected function render_icons( $item, $index ) {
 
@@ -2767,7 +2850,7 @@ class Premium_Grid extends Widget_Base {
 			}
 
 			?>
-			<div <?php echo $this->get_render_attribute_string( $lightbox_key ); ?>>
+			<div <?php echo wp_kses_post( $this->get_render_attribute_string( $lightbox_key ) ); ?>>
 				<a class="pa-gallery-magnific-image pa-gallery-video-icon">
 					<span>
 						<?php
@@ -2776,7 +2859,7 @@ class Premium_Grid extends Widget_Base {
 					</span>
 				</a>
 			</div>
-		
+
 			<?php
 			return;
 		}
@@ -2824,8 +2907,8 @@ class Premium_Grid extends Widget_Base {
 				}
 
 				?>
-				 
-					<a <?php echo $this->get_render_attribute_string( $lightbox_key ); ?>>
+
+					<a <?php echo wp_kses_post( $this->get_render_attribute_string( $lightbox_key ) ); ?>>
 						<span>
 							<?php
 							Icons_Manager::render_icon( $settings['premium_gallery_lightbox_icon'], array( 'aria-hidden' => 'true' ) );
@@ -2881,7 +2964,7 @@ class Premium_Grid extends Widget_Base {
 
 				if ( ! empty( $icon_link ) ) {
 					?>
-					<a <?php echo $this->get_render_attribute_string( $link_key ); ?>>
+					<a <?php echo wp_kses_post( $this->get_render_attribute_string( $link_key ) ); ?>>
 						<span>
 							<?php
 							Icons_Manager::render_icon( $settings['premium_gallery_links_icon'], array( 'aria-hidden' => 'true' ) );
@@ -2894,15 +2977,15 @@ class Premium_Grid extends Widget_Base {
 		}
 	}
 
-	/*
+	/**
 	 * Render Image Caption
 	 *
 	 * Written in PHP to render the final HTML for image title and description
 	 *
 	 * @since 3.6.4
-	 * @access proteced
+	 * @access protected
 	 *
-	 * @param array $item grid image repeater item
+	 * @param array $item image repeater item.
 	 */
 	protected function render_image_caption( $item ) {
 
@@ -2913,29 +2996,29 @@ class Premium_Grid extends Widget_Base {
 		if ( ! empty( $title ) || ! empty( $description ) ) :
 			?>
 			<div class="premium-gallery-caption">
-				
+
 				<?php if ( ! empty( $title ) ) : ?>
-					<span class="premium-gallery-img-name"><?php echo $title; ?></span>
+					<span class="premium-gallery-img-name"><?php echo wp_kses_post( $title ); ?></span>
 					<?php
 				endif;
 
 				if ( ! empty( $description ) ) :
 					?>
-					<p class="premium-gallery-img-desc"><?php echo $description; ?></p>
+					<p class="premium-gallery-img-desc"><?php echo wp_kses_post( $description ); ?></p>
 				<?php endif; ?>
-					
+
 			</div>
 			<?php
 		endif;
 	}
 
-	/*
+	/**
 	 * Get Hosted Videos Parameters
 	 *
 	 * @since 3.7.0
 	 * @access private
 	 *
-	 * @param array $item grid image repeater item
+	 * @param array $item image repeater item.
 	 */
 	private function get_hosted_params( $item ) {
 
@@ -2952,13 +3035,13 @@ class Premium_Grid extends Widget_Base {
 		return $video_params;
 	}
 
-	/*
+	/**
 	 * Get embeded videos parameters
 	 *
 	 * @since 3.7.0
 	 * @access private
 	 *
-	 * @param array $item grid image repeater item
+	 * @param array $item image repeater item.
 	 */
 	private function get_embed_params( $item ) {
 
@@ -2977,13 +3060,11 @@ class Premium_Grid extends Widget_Base {
 		return $video_params;
 	}
 
-	/*
+	/**
 	 * Update Controls
 	 *
 	 * @since 3.8.8
 	 * @access private
-	 *
-	 * @param array $item grid image repeater item
 	 */
 	private function update_controls() {
 
@@ -3025,15 +3106,15 @@ class Premium_Grid extends Widget_Base {
 
 				$( '.premium-gallery-container' ).each( function() {
 
-					var $node_id 	= '<?php echo $this->get_id(); ?>',
+					var $node_id 	= '<?php echo esc_attr( $this->get_id() ); ?>',
 						scope 		= $( '[data-id="' + $node_id + '"]' ),
 						settings    = $(this).data("settings"),
 						selector 	= $(this);
-					
+
 					if ( selector.closest( scope ).length < 1 ) {
 						return;
 					}
-					
+
 					var masonryArgs = {
 						// set itemSelector so .grid-sizer is not used in layout
 						filter 			: settings.active_cat,

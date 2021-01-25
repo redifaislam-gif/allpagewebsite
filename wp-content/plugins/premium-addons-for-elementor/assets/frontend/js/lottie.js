@@ -2141,7 +2141,7 @@
                     i += 1;
                 }
                 if ((typeof char === 'string' && char.charCodeAt(0) !== 13 || !char) && console && console.warn) {
-                    console.warn('Missing character from exported characters list: ', char, style, font);
+                    // console.warn('Missing character from exported characters list: ', char, style, font);
                 }
                 return emptyChar;
             }

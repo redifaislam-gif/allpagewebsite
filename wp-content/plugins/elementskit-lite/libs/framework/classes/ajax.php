@@ -21,6 +21,9 @@ class Ajax{
         $this->utils->save_option('widget_list', !isset($_POST['widget_list']) ? [] : $_POST['widget_list']);
         $this->utils->save_option('module_list',  !isset($_POST['module_list']) ? [] : $_POST['module_list']);
         $this->utils->save_option('user_data', $_POST['user_data']);
+        $this->utils->save_option('settings', $_POST['settings']);
+
+        print_r($_POST['settings']);
         
         do_action('elementskit/admin/after_save');
 

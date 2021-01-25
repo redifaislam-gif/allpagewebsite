@@ -5,7 +5,7 @@ Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_c
 Requires at least: 5.0
 Tested Up To: 5.6
 Requires PHP: 5.4
-Stable Tag: 4.1.6
+Stable Tag: 4.1.8
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -13,7 +13,7 @@ Premium Addons for Elementor plugin includes essential widgets and addons like B
 
 == Description ==
 
-Supercharge your Elementor Page Builder with 55+ highly customizable Elementor addons and widgets, 280+ premade Elementor templates that will give you the ability to build sophisticated websites in less time with no coding required. Both Elementor and Premium Addons plugins take your WordPress website to the next level.
+Supercharge your [Elementor Page Builder](https://wordpress.org/plugins/elementor/) with 55+ highly customizable Elementor essential addons and widgets, 300+ premade Elementor templates that will give you the ability to build sophisticated websites in less time with no coding required. Both Elementor and Premium Addons plugins take your WordPress website to the next level.
 
 [**Check Elementor Widgets & Addons Demo Pages**](https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme)
 
@@ -32,17 +32,20 @@ Duplicate any post, page or template on your website with just ONE click. Check 
 ### NEW: Freehand Design Experience
 Following Elementor's steps, we've implemented freehand design experience in many widgets and addons to make it easier to design amazing layouts using your mouse.
 
-### 55+ Elementor Widgets & Addons
+### 55+ Fully Customizable Elementor Widgets & Addons
 Besides adding new widgets on monthly bases, we don't mainly focus on the number, we focus on adding as much customization options to our widgets as possible more than anywhere else.
 
 ### Modular & Lightweight
-Premium Addons has been built the same way Elementor was built so it's fully modular. You can enable/disable specific elements to prevent overloading your website with code you will not actually use which helps your website have a blazing fast performance.
+Premium Addons for Elementor was built the same way Elementor was built so it's fully modular. You can enable/disable specific elements to prevent overloading your website with code you will not actually use which helps your website have a blazing fast performance.
 
 ### WPML Ready
 You can use Premium Addons for Elementor to build multilingual websites easily as our plugin is 100%  compatible with WPML.
 
 ### Fully Responsive & Cross Browser Ready
 Each widget and addon has been tested on different screen sizes, mobile devices, and tablets keeping in mind to add special responsive controls for the tricky widgets and addons we create. We always test Premium Addons on [BrowserStack](https://www.browserstack.com) to make sure that everything is stable.
+
+### Elementor Editor Panel Not Loading
+[How to resolve Elementor editor panel loading issue when Premium Addons is active](https://premiumaddons.com/docs/im-getting-a-blank-page-on-elementor-after-activating-premium-add-ons/).
 
 ## Elementor Widgets & Addons Included
 
@@ -129,9 +132,9 @@ Each widget and addon has been tested on different screen sizes, mobile devices,
 * [**Community Forums**](https://my.leap13.com/forums/forum/premium-addons-for-elementor-plugin-community-support/) Another good place to search for answers or post your own question.
 * [**Support Ticket System**](https://my.leap13.com/contact-support/) We also welcome Free users’ issues which require access credentials to check.
 
+Check [Premium Addons PRO](https://premiumaddons.com/pro/)
 
-
-For More information about Premium Addons PRO
+Love Elementor Premium Addons User? rate us on [WordPress](https://wordpress.org/support/plugin/premium-addons-for-elementor/reviews/?rate=5#new-post) :)
 
 == Installation ==
 
@@ -184,6 +187,15 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 4.1.8 =
+
+- Tweak: Code refactored for better performance and security.
+
+= 4.1.7 =
+
+- Tweak: Added Scroll After Pagination/Filter Tabs switcher option in Blog widget.
+- Fixed: RTL issues in Counter, Team Members and Videobox widgets.
 
 = 4.1.6 =
 

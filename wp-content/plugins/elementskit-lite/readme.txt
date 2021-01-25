@@ -3,7 +3,7 @@ Contributors: Ataurr, wpmet, emranio, pobonpaul1994, easin55474, khalidjubair, e
 Tags: elementor addons, mega menu, header footer builder, elements, elementor extensions, elementor modules, page builder addons, elementor addon, elementor widget, addons
 Requires at least: 5.0
 Tested up to: 5.6
-Stable tag: 2.1.1
+Stable tag: 2.1.3
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -345,6 +345,14 @@ Our Hotspot Widget for Elementor page builder offers lots of styles including: H
 - Widgets area
 
 == Changelog ==
+Version: 2.1.3 (25-01-2021)
+Fix: Added support for new Widget Categories hook.
+Fix: Team Widget modal close button wasn't clickable on some edge cases.
+Fix: Blog Posts Widget default image size changed to provide clear images.
+
+Version: 2.1.2 (18-01-2021)
+New: Banners consent for showing notices.
+
 Version: 2.1.1 (10-01-2021) 
 New: Quickly turn on or off the Widgets and Modules from Dashboard.
 New: Position option for Header Off-Canvas Widget.

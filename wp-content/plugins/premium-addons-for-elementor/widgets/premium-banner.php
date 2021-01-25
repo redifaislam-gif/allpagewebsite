@@ -41,7 +41,8 @@ class Premium_Banner extends Widget_Base {
 	 * @access public
 	 */
 	public function getTemplateInstance() {
-		return $this->template_instance = Premium_Template_Tags::getInstance();
+		$this->template_instance = Premium_Template_Tags::getInstance();
+		return $this->template_instance;
 	}
 
 	/**

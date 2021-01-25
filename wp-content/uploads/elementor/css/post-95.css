@@ -1,0 +1,28 @@
+.elementor-95 .elementor-element.elementor-element-3779c8f7 > .elementor-container{max-width:1320px;}.elementor-95 .elementor-element.elementor-element-15ec3cd1 .elementskit-section-title-wraper .elementskit-section-title{margin:0px 0px 24px 0px;font-family:"Raleway", Sans-serif;font-size:58px;font-weight:bold;line-height:73px;}.elementor-95 .elementor-element.elementor-element-15ec3cd1 .elementskit-section-title-wraper .elementskit-section-title > span{color:#000000;}.elementor-95 .elementor-element.elementor-element-15ec3cd1 .elementskit-section-title-wraper p{font-size:18px;font-weight:400;line-height:32px;margin:0px 100px 055px 0px;}.elementor-95 .elementor-element.elementor-element-15ec3cd1 > .elementor-widget-container{margin:285px 0px 0px 0px;}.elementor-95 .elementor-element.elementor-element-15ec3cd1 .elementor-widget-container{transition:all 400ms;}.elementor-95 .elementor-element.elementor-element-176d30f3 .elementor-widget-container{transition:all 400ms;}.elementor-95 .elementor-element.elementor-element-3dce6c2c{text-align:right;}.elementor-95 .elementor-element.elementor-element-3dce6c2c .elementor-widget-container{transition:all 400ms;}/* Start custom CSS for text-editor, class: .elementor-element-176d30f3 */.button1{
+    color:white;
+    background-color: #EBA45C;
+    font-size: 18px;
+    padding:10px 35px;
+    text-decoration: none;
+    border-radius:3px;
+    font-family: Segoe UI;
+     line-height: 24px;
+}
+.button2{
+    color:white;
+    background-color: #000;
+    font-size: 18px;
+    padding:10px 35px;
+    text-decoration: none;
+    border-radius:3px;
+    font-family: Segoe UI;
+    margin-left:23px;
+    line-height: 24px;
+}
+.button-section :hover.button1,
+.button-section :hover.button2{
+    color:black;
+    background-color: white;
+    border:2px solid #EBA45C;
+    
+}/* End custom CSS */

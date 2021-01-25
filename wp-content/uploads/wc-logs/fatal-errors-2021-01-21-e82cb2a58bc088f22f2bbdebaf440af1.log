@@ -1,0 +1,68 @@
+2021-01-21T06:51:15+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T07:09:28+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T07:10:30+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T07:15:38+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25070944 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T07:22:30+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T07:26:19+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T11:22:15+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T12:20:00+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25071312 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T12:58:03+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T13:12:11+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:02:21+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25071904 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:04:43+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25071904 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:27:22+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:29:01+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:31:19+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:37:52+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:42:19+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:43:56+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:46:36+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:49:59+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T14:56:25+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25072680 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T15:56:14+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T15:56:39+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T16:42:48+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 20975616 bytes) in C:\wamp64\www\allpagewebsite\wp-includes\functions.php on line 3953
+
+2021-01-21T16:48:26+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T16:49:10+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T16:53:15+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T17:05:01+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T17:05:24+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T17:05:57+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T17:11:18+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T17:12:12+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 1667072 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T18:35:24+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25073032 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
+2021-01-21T18:37:19+00:00 CRITICAL Allowed memory size of 134217728 bytes exhausted (tried to allocate 25073032 bytes) in C:\wamp64\www\allpagewebsite\wp-content\plugins\elementor\core\common\modules\ajax\module.php on line 265
+
